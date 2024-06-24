@@ -33,11 +33,11 @@ const filterByNonMainFieldStudy = R.filter(
 );
 const filterByConferenceJoined = R.filter(R.propEq("컨퍼런스참여", "type"));
 
-const formatDate = (dateStr) =>
+const formatToDateOnly = (dateStr) =>
   dayjs(dateStr, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
 
 const sortByAscDate = R.sortWith([R.ascend(R.prop("dateStr"))]);
-const uniqByDate = R.uniqBy(R.pipe(R.prop("dateStr"), formatDate));
+const uniqByDate = R.uniqBy(R.pipe(R.prop("dateStr"), formatToDateOnly));
 
 const toEventScoreFormat = (info) => `
   이름: ${info.userName}
@@ -58,6 +58,6 @@ module.exports = {
   isBetween1AMTill2AM,
   sortByAscDate,
   uniqByDate,
-  formatDate,
+  formatToDateOnly,
   toEventScoreFormat,
 };
