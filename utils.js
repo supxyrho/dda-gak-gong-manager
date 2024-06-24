@@ -1,4 +1,3 @@
-
 const R = require("ramda");
 const dayjs = require("dayjs");
 
@@ -7,15 +6,16 @@ const isWeekend = (date) => {
   return day === 0 || day === 6;
 };
 
-const isMidnightTo2AM = (date) => {
-  const hour = dayjs(date, 'YYYY-MM-DD HH:mm').hour();
-  const minute = dayjs(date, 'YYYY-MM-DD HH:mm').minute();
+const parseHour = (dateStr) => dayjs(dateStr, "YYYY-MM-DD HH:mm").hour();
+const parseMinute = (dateStr) => dayjs(dateStr, "YYYY-MM-DD HH:mm").minute();
 
-  const isMidnightHour = R.includes(hour, [0, 1]);
-  const is2AMExact = R.both(R.equals(2),  R.equals(minute, 0));
+const isBetween0hAnd1h = (hour) => R.includes(hour, [0, 1]);
+const is0Minute = (minute) => minute === 0;
 
-  return R.either(isMidnightHour, is2AMExact);
-};
+const isBetween1AMTill2AM = R.converge(R.or, [
+  R.pipe(parseHour, isBetween0hAnd1h),
+  R.both(R.pipe(parseHour, R.equals(2)), R.pipe(parseMinute, is0Minute)),
+]);
 
 const calculateBasePointsByRecords = R.length;
 const calculateBonusPointsWith = (filter) =>
@@ -25,7 +25,7 @@ const calculateTotalPointsWith = (fA, fB) => (records) =>
 
 const filterByWeekend = R.filter(R.pipe(R.prop("dateStr"), isWeekend));
 const filterByMidnightTo2AM = R.filter(
-  R.pipe(R.prop("dateStr"), isMidnightTo2AM)
+  R.pipe(R.prop("dateStr"), isBetween1AMTill2AM)
 );
 const filterByGroupStudy = R.filter(R.propEq("같이공부", "type"));
 const filterByNonMainFieldStudy = R.filter(
@@ -43,21 +43,21 @@ const toEventScoreFormat = (info) => `
   이름: ${info.userName}
   디아블로 직업 : ${info.eventJobName}
   총 획득 점수: ${info.totalPoint} (인증: ${info.basePoint} + 보너스: ${info.bonusPoint})
-`
+`;
 
 module.exports = {
-    calculateBasePointsByRecords,
-    calculateBonusPointsWith,
-    calculateTotalPointsWith,
-    filterByWeekend,
-    filterByMidnightTo2AM,
-    filterByGroupStudy,
-    filterByNonMainFieldStudy,
-    filterByConferenceJoined,
-    isWeekend,
-    isMidnightTo2AM,
-    sortByAscDate,
-    uniqByDate,
-    formatDate,
-    toEventScoreFormat 
-}
+  calculateBasePointsByRecords,
+  calculateBonusPointsWith,
+  calculateTotalPointsWith,
+  filterByWeekend,
+  filterByMidnightTo2AM,
+  filterByGroupStudy,
+  filterByNonMainFieldStudy,
+  filterByConferenceJoined,
+  isWeekend,
+  isBetween1AMTill2AM,
+  sortByAscDate,
+  uniqByDate,
+  formatDate,
+  toEventScoreFormat,
+};
