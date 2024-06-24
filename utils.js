@@ -20,8 +20,8 @@ const isBetween1AMTill2AM = R.converge(R.or, [
 const calculateBasePointsByRecords = R.length;
 const calculateBonusPointsWith = (filter) =>
   R.pipe(filter, R.length, R.clamp(0, 2));
-const calculateTotalPointsWith = (fA, fB) => (records) =>
-  R.pipe(R.converge(R.add, [fA, fB]))(records);
+const calculateTotalPointsWith = (fA, fB) =>
+  R.pipe(R.converge(R.add, [fA, fB]));
 
 const filterByWeekend = R.filter(R.pipe(R.prop("dateStr"), isWeekend));
 const filterByMidnightTo2AM = R.filter(
@@ -34,7 +34,7 @@ const filterByNonMainFieldStudy = R.filter(
 const filterByConferenceJoined = R.filter(R.propEq("컨퍼런스참여", "type"));
 
 const formatDate = (dateStr) =>
-  dayjs(dateStr, "YYYY-MM-DD:HH:mm").format("YYYY-MM-DD");
+  dayjs(dateStr, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
 
 const sortByAscDate = R.sortWith([R.ascend(R.prop("dateStr"))]);
 const uniqByDate = R.uniqBy(R.pipe(R.prop("dateStr"), formatDate));
