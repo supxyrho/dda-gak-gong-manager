@@ -1,33 +1,4 @@
-const R = require("ramda");
-const dayjs = require("dayjs");
-
-const isWeekend = (date) => {
-  const day = dayjs(date).day();
-  return day === 0 || day === 6;
-};
-
-const isMidnightTo2AM = (date) => {
-  const hour = dayjs(date).hour();
-  const minute = dayjs(date).minute();
-
-  return hour === 0 || hour === 1 || (hour === 2 && minute === 0);
-};
-
-const calculateBasePointsByRecords = R.length;
-const calculateBonusPointsWith = (filter) =>
-  R.pipe(filter, R.length, R.clamp(0, 2));
-const calculateTotalPointsWith = (fA, fB) => (records) =>
-  R.pipe(R.converge(R.add, [fA, fB]))(records);
-
-const filterByWeekend = R.filter(R.pipe(R.prop("dateStr"), isWeekend));
-const fitlerByMidnightTo2PM = R.filter(
-  R.pipe(R.prop("dateStr"), isMidnightTo2AM)
-);
-const filterByGroupStudy = R.filter(R.propEq("같이공부", "type"));
-const filterByNonMainFieldStudy = R.filter(
-  R.filter(R.propEq("다른분야공부", "type"))
-);
-const filterByConferenceJoined = R.filter(R.propEq("컨퍼런스참여", "type"));
+const { calculateBasePointsByRecords, calculateBonusPointsWith, calculateTotalPointsWith, filterByWeekend, filterByMidnightTo2AM, filterByGroupStudy, filterByNonMainFieldStudy, filterByConferenceJoined } = require("./utils");
 
 module.exports = [
   {
@@ -45,11 +16,11 @@ module.exports = [
     eventJobName: "어쎄신",
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculateBonusPointsWith(
-      fitlerByMidnightTo2PM
+      filterByMidnightTo2AM
     ),
     calculateTotalPointsByRecords: calculateTotalPointsWith(
       calculateBasePointsByRecords,
-      calculateBonusPointsWith(fitlerByMidnightTo2PM)
+      calculateBonusPointsWith(filterByMidnightTo2AM)
     ),
   },
 
