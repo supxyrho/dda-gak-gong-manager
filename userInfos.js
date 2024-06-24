@@ -6,7 +6,7 @@ const isWeekend = (date) => {
   return day === 0 || day === 6;
 };
 
-const isMidnightTo2PM = (date) => {
+const isMidnightTo2AM = (date) => {
   const hour = dayjs(date).hour();
   const minute = dayjs(date).minute();
 
@@ -21,7 +21,7 @@ const calculateTotalPointsWith = (fA, fB) => (records) =>
 
 const filterByWeekend = R.filter(R.pipe(R.prop("dateStr"), isWeekend));
 const fitlerByMidnightTo2PM = R.filter(
-  R.pipe(R.prop("dateStr"), isMidnightTo2PM)
+  R.pipe(R.prop("dateStr"), isMidnightTo2AM)
 );
 const filterByGroupStudy = R.filter(R.propEq("같이공부", "type"));
 const filterByNonMainFieldStudy = R.filter(

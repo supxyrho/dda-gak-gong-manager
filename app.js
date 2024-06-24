@@ -7,13 +7,13 @@ const dayjs = require("dayjs");
 const formatDate = (dateStr) =>
   dayjs(dateStr, "YYYY-MM-DD:HH:mm").format("YYYY-MM-DD");
 
-const sortByAsc = R.sortWith([R.ascend(R.prop("dateStr"))]);
+const sortByAscDate = R.sortWith([R.ascend(R.prop("dateStr"))]);
 const uniqByDate = R.uniqBy(R.pipe(R.prop("dateStr"), formatDate));
 
 const preprocessAllStudyRecords = R.pipe(
   R.groupBy(R.prop("userName")),
   R.values,
-  R.map(sortByAsc),
+  R.map(sortByAscDate),
   R.map(uniqByDate)
 );
 
