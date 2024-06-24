@@ -1,10 +1,8 @@
 const R = require("ramda");
 const dayjs = require("dayjs");
 
-const isWeekend = (date) => {
-  const day = dayjs(date).day();
-  return day === 0 || day === 6;
-};
+const getDayFromDateStr = (date) => dayjs(date).day();
+const isWeekend = R.pipe(getDayFromDateStr, R.either(R.equals(0), R.equals(6)));
 
 const parseHour = (dateStr) => dayjs(dateStr, "YYYY-MM-DD HH:mm").hour();
 const parseMinute = (dateStr) => dayjs(dateStr, "YYYY-MM-DD HH:mm").minute();
