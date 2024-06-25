@@ -96,6 +96,10 @@ const toEventScoreFormat = (info) => `
 `;
 
 module.exports = {
+  isWeekend,
+  isFrom1AMTill2AM,
+  sortByAscDate,
+  uniqByDate,
   calculateBasePointsByRecords,
   calculateBonusPointsWith,
   calculateTotalScoreWith,
@@ -104,12 +108,6 @@ module.exports = {
   filterByGroupStudy,
   filterByNonMainFieldStudy,
   filterByConferenceJoined,
-  isWeekend,
-  isFrom1AMTill2AM,
-  sortByAscDate,
-  uniqByDate,
-  formatToDateOnly,
-  toEventScoreFormat,
   calculateWeekendBonusPoints,
   calculateTotalScoreIncludingWeekendBonus,
   calculate1AMTo2AMBonusPoints,
@@ -119,5 +117,7 @@ module.exports = {
   calculateNonMainFieldStudyBonusPoints,
   calculateTotalScoreIncludingNonMainFieldStudyBonus,
   calculateConferenceJoinedBonusPoints,
-  calculateTotalScoreIncludingConferenceJoinedBonus 
+  calculateTotalScoreIncludingConferenceJoinedBonus ,
+  formatToDateOnly,
+  toEventScoreFormat,
 };
