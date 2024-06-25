@@ -16,6 +16,7 @@ const preprocessAllStudyRecords = R.pipe(
   R.values,
   // @brief : Midnight ~ AM 2 사이 값을 이전날 23:59로 변경
   R.map(
+    // @TODO: partial application needed
     R.map(
       R.when(
         R.pipe(R.prop("dateStr"), isFrom1AMTill2AM),
@@ -33,6 +34,7 @@ const preprocessAllStudyRecords = R.pipe(
   // R.forEach(R.tap((el)=> console.log('el', el))),
   R.map(sortByAscDate),
   R.map(uniqByDate),
+  // @TODO: refactoring needed
   R.map((record) => {
     const userName = R.pipe(R.head, R.prop("userName"))(record);
     const eventJobName = R.pipe(
@@ -43,7 +45,10 @@ const preprocessAllStudyRecords = R.pipe(
     return R.applySpec({
       userName: R.always(userName),
       eventJobName: R.always(eventJobName),
+      targetScore: R.always(user.targetScore),
       totalScore: user.calculateTotalScoreByRecords,
+      scoreNeeded: (record)=>
+        R.subtract(user.targetScore, user.calculateTotalScoreByRecords(record)),
       basePoint: user.calculateBasePointsByRecords,
       bonusPoint: user.calculateBonusPointsByRecords,
     })(record);

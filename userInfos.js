@@ -11,6 +11,7 @@ module.exports = [
   {
     userName: "A",
     eventJobName: "바바리안",
+    targetScore: 15,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculateWeekendBonusPoints,
     calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus
@@ -18,6 +19,7 @@ module.exports = [
   {
     userName: "B",
     eventJobName: "어쎄신",
+    targetScore: 15,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculate1AMTo2AMBonusPoints,
     calculateTotalScoreByRecords:calculateTotalScoreIncluding1AMTo2AMBonus
@@ -26,6 +28,7 @@ module.exports = [
   {
     userName: "C",
     eventJobName: "드루이드",
+    targetScore: 15,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords:calculateGroupStudyBonusPoints, 
     calculateTotalScoreByRecords:calculateTotalScoreIncludingGroupStudyBonus
@@ -36,6 +39,7 @@ module.exports = [
   {
     userName: "E",
     eventJobName: "소서리스",
+    targetScore: 15,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords:calculateNonMainFieldStudyBonusPoints,
     calculateTotalScoreByRecords: calculateTotalScoreIncludingNonMainFieldStudyBonus
@@ -43,6 +47,7 @@ module.exports = [
   {
     userName: "E",
     eventJobName: "소서리스",
+    targetScore: 15,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculateConferenceJoinedBonusPoints,
     calculateTotalScoreByRecords: calculateTotalScoreIncludingConferenceJoinedBonus

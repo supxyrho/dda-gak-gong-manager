@@ -91,7 +91,10 @@ const calculateTotalScoreIncludingConferenceJoinedBonus = calculateTotalScoreWit
 const toEventScoreFormat = (info) => `
   이름: ${info.userName}
   디아블로 직업 : ${info.eventJobName}
+  목표 점수: ${info.targetScore}
   총 획득 점수: ${info.totalScore} (인증: ${info.basePoint} + 보너스: ${info.bonusPoint})
+  남은 점수: ${info.scoreNeeded}
+
 `;
 
 module.exports = {
