@@ -28,7 +28,7 @@ const isFrom1AMTill2AM = R.converge(R.or, [
 const calculateBasePointsByRecords = R.length;
 const calculateBonusPointsWith = (filter) =>
   R.pipe(filter, R.length, R.clamp(0, 2));
-const calculateTotalPointsWith = (fA, fB) =>
+const calculateTotalScoreWith = (fA, fB) =>
   R.pipe(R.converge(R.add, [fA, fB]));
 
 // Section: filtering
@@ -48,7 +48,7 @@ const calculateWeekendBonusPoints = calculateBonusPointsWith(
   filterByWeekend
 );
 
-const calculateTotalPointsIncludingWeekendBonus = calculateTotalPointsWith(
+const calculateTotalScoreIncludingWeekendBonus = calculateTotalScoreWith(
   calculateBasePointsByRecords,
   calculateWeekendBonusPoints
 );
@@ -57,7 +57,7 @@ const calculate1AMTo2AMBonusPoints = calculateBonusPointsWith(
   filterBy1AMTill2AM
 );
 
-const calculateTotalPointsIncluding1AMTo2AMBonus = calculateTotalPointsWith(
+const calculateTotalScoreIncluding1AMTo2AMBonus = calculateTotalScoreWith(
   calculateBasePointsByRecords,
   calculate1AMTo2AMBonusPoints
 );
@@ -66,7 +66,7 @@ const calculateGroupStudyBonusPoints = calculateBonusPointsWith(
   filterByGroupStudy
 );
 
-const calculateTotalPointsIncludingGroupStudyBonus = calculateTotalPointsWith(
+const calculateTotalScoreIncludingGroupStudyBonus = calculateTotalScoreWith(
   calculateBasePointsByRecords,
   calculateGroupStudyBonusPoints
 );
@@ -75,7 +75,7 @@ const calculateNonMainFieldStudyBonusPoints = calculateBonusPointsWith(
   filterByNonMainFieldStudy
 );
 
-const calculateTotalPointsIncludingNonMainFieldStudyBonus = calculateTotalPointsWith(
+const calculateTotalScoreIncludingNonMainFieldStudyBonus = calculateTotalScoreWith(
   calculateBasePointsByRecords,
   calculateNonMainFieldStudyBonusPoints
 );
@@ -84,7 +84,7 @@ const calculateConferenceJoinedBonusPoints = calculateBonusPointsWith(
   filterByConferenceJoined
 );
 
-const calculateTotalPointsIncludingConferenceJoinedBonus = calculateTotalPointsWith(
+const calculateTotalScoreIncludingConferenceJoinedBonus = calculateTotalScoreWith(
   calculateBasePointsByRecords,
   calculateConferenceJoinedBonusPoints
 );
@@ -92,13 +92,13 @@ const calculateTotalPointsIncludingConferenceJoinedBonus = calculateTotalPointsW
 const toEventScoreFormat = (info) => `
   이름: ${info.userName}
   디아블로 직업 : ${info.eventJobName}
-  총 획득 점수: ${info.totalPoint} (인증: ${info.basePoint} + 보너스: ${info.bonusPoint})
+  총 획득 점수: ${info.totalScore} (인증: ${info.basePoint} + 보너스: ${info.bonusPoint})
 `;
 
 module.exports = {
   calculateBasePointsByRecords,
   calculateBonusPointsWith,
-  calculateTotalPointsWith,
+  calculateTotalScoreWith,
   filterByWeekend,
   filterBy1AMTill2AM,
   filterByGroupStudy,
@@ -111,13 +111,13 @@ module.exports = {
   formatToDateOnly,
   toEventScoreFormat,
   calculateWeekendBonusPoints,
-  calculateTotalPointsIncludingWeekendBonus,
+  calculateTotalScoreIncludingWeekendBonus,
   calculate1AMTo2AMBonusPoints,
-  calculateTotalPointsIncluding1AMTo2AMBonus,
+  calculateTotalScoreIncluding1AMTo2AMBonus,
   calculateGroupStudyBonusPoints,
-  calculateTotalPointsIncludingGroupStudyBonus,
+  calculateTotalScoreIncludingGroupStudyBonus,
   calculateNonMainFieldStudyBonusPoints,
-  calculateTotalPointsIncludingNonMainFieldStudyBonus,
+  calculateTotalScoreIncludingNonMainFieldStudyBonus,
   calculateConferenceJoinedBonusPoints,
-  calculateTotalPointsIncludingConferenceJoinedBonus 
+  calculateTotalScoreIncludingConferenceJoinedBonus 
 };

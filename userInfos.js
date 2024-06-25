@@ -1,10 +1,10 @@
 const { 
   calculateBasePointsByRecords,
-  calculateWeekendBonusPoints, calculateTotalPointsIncludingWeekendBonus,
-  calculate1AMTo2AMBonusPoints, calculateTotalPointsIncluding1AMTo2AMBonus,
-  calculateGroupStudyBonusPoints, calculateTotalPointsIncludingGroupStudyBonus,
-  calculateNonMainFieldStudyBonusPoints, calculateTotalPointsIncludingNonMainFieldStudyBonus,
-  calculateConferenceJoinedBonusPoints, calculateTotalPointsIncludingConferenceJoinedBonus,
+  calculateWeekendBonusPoints, calculateTotalScoreIncludingWeekendBonus,
+  calculate1AMTo2AMBonusPoints, calculateTotalScoreIncluding1AMTo2AMBonus,
+  calculateGroupStudyBonusPoints, calculateTotalScoreIncludingGroupStudyBonus,
+  calculateNonMainFieldStudyBonusPoints, calculateTotalScoreIncludingNonMainFieldStudyBonus,
+  calculateConferenceJoinedBonusPoints, calculateTotalScoreIncludingConferenceJoinedBonus,
 } = require("./utils");
 
 module.exports = [
@@ -13,14 +13,14 @@ module.exports = [
     eventJobName: "바바리안",
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalPointsByRecords: calculateTotalPointsIncludingWeekendBonus
+    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus
   },
   {
     userName: "B",
     eventJobName: "어쎄신",
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculate1AMTo2AMBonusPoints,
-    calculateTotalPointsByRecords:calculateTotalPointsIncluding1AMTo2AMBonus
+    calculateTotalScoreByRecords:calculateTotalScoreIncluding1AMTo2AMBonus
   },
 
   {
@@ -28,7 +28,7 @@ module.exports = [
     eventJobName: "드루이드",
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords:calculateGroupStudyBonusPoints, 
-    calculateTotalPointsByRecords:calculateTotalPointsIncludingGroupStudyBonus
+    calculateTotalScoreByRecords:calculateTotalScoreIncludingGroupStudyBonus
   },
 
   // 아마존 생략
@@ -38,13 +38,13 @@ module.exports = [
     eventJobName: "소서리스",
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords:calculateNonMainFieldStudyBonusPoints,
-    calculateTotalPointsByRecords: calculateTotalPointsIncludingNonMainFieldStudyBonus
+    calculateTotalScoreByRecords: calculateTotalScoreIncludingNonMainFieldStudyBonus
   },
   {
     userName: "E",
     eventJobName: "소서리스",
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculateConferenceJoinedBonusPoints,
-    calculateTotalPointsByRecords: calculateTotalPointsIncludingConferenceJoinedBonus
+    calculateTotalScoreByRecords: calculateTotalScoreIncludingConferenceJoinedBonus
   },
 ];

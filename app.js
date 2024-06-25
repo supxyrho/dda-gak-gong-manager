@@ -43,7 +43,7 @@ const preprocessAllStudyRecords = R.pipe(
     return R.applySpec({
       userName: R.always(userName),
       eventJobName: R.always(eventJobName),
-      totalPoint: user.calculateTotalPointsByRecords,
+      totalScore: user.calculateTotalScoreByRecords,
       basePoint: user.calculateBasePointsByRecords,
       bonusPoint: user.calculateBonusPointsByRecords,
     })(record);
