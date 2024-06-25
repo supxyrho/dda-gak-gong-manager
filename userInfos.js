@@ -1,38 +1,34 @@
-const { calculateBasePointsByRecords, calculateBonusPointsWith, calculateTotalPointsWith, filterByWeekend, filterBy1AMTill2AM, filterByGroupStudy, filterByNonMainFieldStudy, filterByConferenceJoined } = require("./utils");
+const { 
+  calculateBasePointsByRecords,
+  calculateWeekendBonusPoints, calculateTotalPointsIncludingWeekendBonus,
+  calculate1AMTo2AMBonusPoints, calculateTotalPointsIncluding1AMTo2AMBonus,
+  calculateGroupStudyBonusPoints, calculateTotalPointsIncludingGroupStudyBonus,
+  calculateNonMainFieldStudyBonusPoints, calculateTotalPointsIncludingNonMainFieldStudyBonus,
+  calculateConferenceJoinedBonusPoints, calculateTotalPointsIncludingConferenceJoinedBonus,
+} = require("./utils");
 
 module.exports = [
   {
     userName: "A",
     eventJobName: "바바리안",
     calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateBonusPointsWith(filterByWeekend),
-    calculateTotalPointsByRecords: calculateTotalPointsWith(
-      calculateBasePointsByRecords,
-      calculateBonusPointsWith(filterByWeekend)
-    ),
+    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
+    calculateTotalPointsByRecords: calculateTotalPointsIncludingWeekendBonus
   },
   {
     userName: "B",
     eventJobName: "어쎄신",
     calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateBonusPointsWith(
-      filterBy1AMTill2AM
-    ),
-    calculateTotalPointsByRecords: calculateTotalPointsWith(
-      calculateBasePointsByRecords,
-      calculateBonusPointsWith(filterBy1AMTill2AM)
-    ),
+    calculateBonusPointsByRecords: calculate1AMTo2AMBonusPoints,
+    calculateTotalPointsByRecords:calculateTotalPointsIncluding1AMTo2AMBonus
   },
 
   {
     userName: "C",
     eventJobName: "드루이드",
     calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateBonusPointsWith(filterByGroupStudy),
-    calculateTotalPointsByRecords: calculateTotalPointsWith(
-      calculateBasePointsByRecords,
-      calculateBonusPointsWith(filterByGroupStudy)
-    ),
+    calculateBonusPointsByRecords:calculateGroupStudyBonusPoints, 
+    calculateTotalPointsByRecords:calculateTotalPointsIncludingGroupStudyBonus
   },
 
   // 아마존 생략
@@ -41,24 +37,14 @@ module.exports = [
     userName: "E",
     eventJobName: "소서리스",
     calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateBonusPointsWith(
-      filterByNonMainFieldStudy
-    ),
-    calculateTotalPointsByRecords: calculateTotalPointsWith(
-      calculateBasePointsByRecords,
-      calculateBonusPointsWith(filterByNonMainFieldStudy)
-    ),
+    calculateBonusPointsByRecords:calculateNonMainFieldStudyBonusPoints,
+    calculateTotalPointsByRecords: calculateTotalPointsIncludingNonMainFieldStudyBonus
   },
   {
     userName: "E",
     eventJobName: "소서리스",
     calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateBonusPointsWith(
-      filterByConferenceJoined
-    ),
-    calculateTotalPointsByRecords: calculateTotalPointsWith(
-      calculateBasePointsByRecords,
-      calculateBonusPointsWith(filterByConferenceJoined)
-    ),
+    calculateBonusPointsByRecords: calculateConferenceJoinedBonusPoints,
+    calculateTotalPointsByRecords: calculateTotalPointsIncludingConferenceJoinedBonus
   },
 ];

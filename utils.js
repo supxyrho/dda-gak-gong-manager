@@ -1,25 +1,37 @@
 const R = require("ramda");
 const dayjs = require("dayjs");
 
+// Section : small utilities
+const sortByAscDate = R.sortWith([R.ascend(R.prop("dateStr"))]);
+const formatToDateOnly = (dateStr) =>
+  dayjs(dateStr, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
+const uniqByDate = R.uniqBy(R.pipe(R.prop("dateStr"), formatToDateOnly));
+
+
+// Section: parsing date
 const parseDay = (date) => dayjs(date).day();
 const parseHour = (dateStr) => dayjs(dateStr, "YYYY-MM-DD HH:mm").hour();
 const parseMinute = (dateStr) => dayjs(dateStr, "YYYY-MM-DD HH:mm").minute();
 
+
+// about filtering predicate
 const isWeekend = R.pipe(parseDay, R.either(R.equals(0), R.equals(6)));
 const isBetween0hAnd1h = (hour) => R.includes(hour, [0, 1]);
 const is0Minute = (minute) => minute === 0;
-
 const isFrom1AMTill2AM = R.converge(R.or, [
   R.pipe(parseHour, isBetween0hAnd1h),
   R.both(R.pipe(parseHour, R.equals(2)), R.pipe(parseMinute, is0Minute)),
 ]);
 
+
+// Section: calculating points
 const calculateBasePointsByRecords = R.length;
 const calculateBonusPointsWith = (filter) =>
   R.pipe(filter, R.length, R.clamp(0, 2));
 const calculateTotalPointsWith = (fA, fB) =>
   R.pipe(R.converge(R.add, [fA, fB]));
 
+// Section: filtering
 const filterByWeekend = R.filter(R.pipe(R.prop("dateStr"), isWeekend));
 const filterBy1AMTill2AM = R.filter(
   R.pipe(R.prop("dateStr"), isFrom1AMTill2AM)
@@ -30,11 +42,52 @@ const filterByNonMainFieldStudy = R.filter(
 );
 const filterByConferenceJoined = R.filter(R.propEq("컨퍼런스참여", "type"));
 
-const formatToDateOnly = (dateStr) =>
-  dayjs(dateStr, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
 
-const sortByAscDate = R.sortWith([R.ascend(R.prop("dateStr"))]);
-const uniqByDate = R.uniqBy(R.pipe(R.prop("dateStr"), formatToDateOnly));
+// Section: user level requirements
+const calculateWeekendBonusPoints = calculateBonusPointsWith(
+  filterByWeekend
+);
+
+const calculateTotalPointsIncludingWeekendBonus = calculateTotalPointsWith(
+  calculateBasePointsByRecords,
+  calculateWeekendBonusPoints
+);
+
+const calculate1AMTo2AMBonusPoints = calculateBonusPointsWith(
+  filterBy1AMTill2AM
+);
+
+const calculateTotalPointsIncluding1AMTo2AMBonus = calculateTotalPointsWith(
+  calculateBasePointsByRecords,
+  calculate1AMTo2AMBonusPoints
+);
+
+const calculateGroupStudyBonusPoints = calculateBonusPointsWith(
+  filterByGroupStudy
+);
+
+const calculateTotalPointsIncludingGroupStudyBonus = calculateTotalPointsWith(
+  calculateBasePointsByRecords,
+  calculateGroupStudyBonusPoints
+);
+
+const calculateNonMainFieldStudyBonusPoints = calculateBonusPointsWith(
+  filterByNonMainFieldStudy
+);
+
+const calculateTotalPointsIncludingNonMainFieldStudyBonus = calculateTotalPointsWith(
+  calculateBasePointsByRecords,
+  calculateNonMainFieldStudyBonusPoints
+);
+
+const calculateConferenceJoinedBonusPoints = calculateBonusPointsWith(
+  filterByConferenceJoined
+);
+
+const calculateTotalPointsIncludingConferenceJoinedBonus = calculateTotalPointsWith(
+  calculateBasePointsByRecords,
+  calculateConferenceJoinedBonusPoints
+);
 
 const toEventScoreFormat = (info) => `
   이름: ${info.userName}
@@ -57,4 +110,14 @@ module.exports = {
   uniqByDate,
   formatToDateOnly,
   toEventScoreFormat,
+  calculateWeekendBonusPoints,
+  calculateTotalPointsIncludingWeekendBonus,
+  calculate1AMTo2AMBonusPoints,
+  calculateTotalPointsIncluding1AMTo2AMBonus,
+  calculateGroupStudyBonusPoints,
+  calculateTotalPointsIncludingGroupStudyBonus,
+  calculateNonMainFieldStudyBonusPoints,
+  calculateTotalPointsIncludingNonMainFieldStudyBonus,
+  calculateConferenceJoinedBonusPoints,
+  calculateTotalPointsIncludingConferenceJoinedBonus 
 };
