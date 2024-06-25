@@ -6,6 +6,7 @@ const dayjs = require("dayjs");
 
 const {
   isFrom1AMTill2AM,
+  adjustToPrevDayEnd,
   sortByAscDate,
   uniqByDate,
   toEventScoreFormat,
@@ -14,24 +15,11 @@ const {
 const preprocessAllStudyRecords = R.pipe(
   R.groupBy(R.prop("userName")),
   R.values,
-  // @brief : Midnight ~ AM 2 사이 값을 이전날 23:59로 변경
   R.map(
-    // @TODO: partial application needed
     R.map(
-      R.when(
-        R.pipe(R.prop("dateStr"), isFrom1AMTill2AM),
-        R.evolve({
-          dateStr: (dateStr) =>
-            dayjs(dateStr, "YYYY-MM-DD:HH:mm")
-              .subtract(1, "day")
-              .set("hour", 23)
-              .set("minute", 59)
-              .format("YYYY-MM-DD:HH:mm"),
-        })
-      )
+      R.when(R.pipe(R.prop("dateStr"), isFrom1AMTill2AM), adjustToPrevDayEnd)
     )
   ),
-  // R.forEach(R.tap((el)=> console.log('el', el))),
   R.map(sortByAscDate),
   R.map(uniqByDate),
   // @TODO: refactoring needed
@@ -47,7 +35,7 @@ const preprocessAllStudyRecords = R.pipe(
       eventJobName: R.always(eventJobName),
       targetScore: R.always(user.targetScore),
       totalScore: user.calculateTotalScoreByRecords,
-      scoreNeeded: (record)=>
+      scoreNeeded: (record) =>
         R.subtract(user.targetScore, user.calculateTotalScoreByRecords(record)),
       basePoint: user.calculateBasePointsByRecords,
       bonusPoint: user.calculateBonusPointsByRecords,

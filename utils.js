@@ -6,11 +6,18 @@ const sortByAscDate = R.sortWith([R.ascend(R.prop("dateStr"))]);
 const formatToDateOnly = (dateStr) =>
   dayjs(dateStr, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
 const uniqByDate = R.uniqBy(R.pipe(R.prop("dateStr"), formatToDateOnly));
+const adjustToPrevDayEnd = R.evolve({
+  dateStr: (dateStr) =>
+    dayjs(dateStr, "YYYY-MM-DD:HH:mm")
+      .subtract(1, "day")
+      .set("hour", 23)
+      .set("minute", 59)
+      .format("YYYY-MM-DD:HH:mm"),
+});
 
 const parseDay = (date) => dayjs(date).day();
 const parseHour = (dateStr) => dayjs(dateStr, "YYYY-MM-DD HH:mm").hour();
 const parseMinute = (dateStr) => dayjs(dateStr, "YYYY-MM-DD HH:mm").minute();
-
 
 // Layer 2
 const isWeekend = R.pipe(parseDay, R.either(R.equals(0), R.equals(6)));
@@ -21,14 +28,11 @@ const isFrom1AMTill2AM = R.converge(R.or, [
   R.both(R.pipe(parseHour, R.equals(2)), R.pipe(parseMinute, is0Minute)),
 ]);
 
-
 // Layer 3
 const calculateBasePointsByRecords = R.length;
 const calculateBonusPointsWith = (filter) =>
   R.pipe(filter, R.length, R.clamp(0, 2));
-const calculateTotalScoreWith = (fA, fB) =>
-  R.pipe(R.converge(R.add, [fA, fB]));
-
+const calculateTotalScoreWith = (fA, fB) => R.pipe(R.converge(R.add, [fA, fB]));
 
 // Layer 4
 const filterByWeekend = R.filter(R.pipe(R.prop("dateStr"), isWeekend));
@@ -41,29 +45,24 @@ const filterByNonMainFieldStudy = R.filter(
 );
 const filterByConferenceJoined = R.filter(R.propEq("컨퍼런스참여", "type"));
 
-
 // Layer 5 (기획 요구사항 레벨)
-const calculateWeekendBonusPoints = calculateBonusPointsWith(
-  filterByWeekend
-);
+const calculateWeekendBonusPoints = calculateBonusPointsWith(filterByWeekend);
 
 const calculateTotalScoreIncludingWeekendBonus = calculateTotalScoreWith(
   calculateBasePointsByRecords,
   calculateWeekendBonusPoints
 );
 
-const calculate1AMTo2AMBonusPoints = calculateBonusPointsWith(
-  filterBy1AMTill2AM
-);
+const calculate1AMTo2AMBonusPoints =
+  calculateBonusPointsWith(filterBy1AMTill2AM);
 
 const calculateTotalScoreIncluding1AMTo2AMBonus = calculateTotalScoreWith(
   calculateBasePointsByRecords,
   calculate1AMTo2AMBonusPoints
 );
 
-const calculateGroupStudyBonusPoints = calculateBonusPointsWith(
-  filterByGroupStudy
-);
+const calculateGroupStudyBonusPoints =
+  calculateBonusPointsWith(filterByGroupStudy);
 
 const calculateTotalScoreIncludingGroupStudyBonus = calculateTotalScoreWith(
   calculateBasePointsByRecords,
@@ -74,19 +73,21 @@ const calculateNonMainFieldStudyBonusPoints = calculateBonusPointsWith(
   filterByNonMainFieldStudy
 );
 
-const calculateTotalScoreIncludingNonMainFieldStudyBonus = calculateTotalScoreWith(
-  calculateBasePointsByRecords,
-  calculateNonMainFieldStudyBonusPoints
-);
+const calculateTotalScoreIncludingNonMainFieldStudyBonus =
+  calculateTotalScoreWith(
+    calculateBasePointsByRecords,
+    calculateNonMainFieldStudyBonusPoints
+  );
 
 const calculateConferenceJoinedBonusPoints = calculateBonusPointsWith(
   filterByConferenceJoined
 );
 
-const calculateTotalScoreIncludingConferenceJoinedBonus = calculateTotalScoreWith(
-  calculateBasePointsByRecords,
-  calculateConferenceJoinedBonusPoints
-);
+const calculateTotalScoreIncludingConferenceJoinedBonus =
+  calculateTotalScoreWith(
+    calculateBasePointsByRecords,
+    calculateConferenceJoinedBonusPoints
+  );
 
 const toEventScoreFormat = (info) => `
   이름: ${info.userName}
@@ -100,6 +101,7 @@ const toEventScoreFormat = (info) => `
 module.exports = {
   isWeekend,
   isFrom1AMTill2AM,
+  adjustToPrevDayEnd,
   sortByAscDate,
   uniqByDate,
   calculateBasePointsByRecords,
@@ -119,7 +121,7 @@ module.exports = {
   calculateNonMainFieldStudyBonusPoints,
   calculateTotalScoreIncludingNonMainFieldStudyBonus,
   calculateConferenceJoinedBonusPoints,
-  calculateTotalScoreIncludingConferenceJoinedBonus ,
+  calculateTotalScoreIncludingConferenceJoinedBonus,
   formatToDateOnly,
   toEventScoreFormat,
 };
