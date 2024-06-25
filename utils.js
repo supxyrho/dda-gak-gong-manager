@@ -1,6 +1,9 @@
 const R = require("ramda");
 const dayjs = require("dayjs");
 
+// functional helper
+const mapNested = (fn) => R.map(R.map(fn));
+
 // Layer 1
 const sortByAscDate = R.sortWith([R.ascend(R.prop("dateStr"))]);
 const formatToDateOnly = (dateStr) =>
@@ -33,6 +36,10 @@ const calculateBasePointsByRecords = R.length;
 const calculateBonusPointsWith = (filter) =>
   R.pipe(filter, R.length, R.clamp(0, 2));
 const calculateTotalScoreWith = (fA, fB) => R.pipe(R.converge(R.add, [fA, fB]));
+
+const findUserByName = R.curry((userName, users) =>
+  R.find(R.propEq(userName, "userName"))(users)
+);
 
 // Layer 4
 const filterByWeekend = R.filter(R.pipe(R.prop("dateStr"), isWeekend));
@@ -89,7 +96,19 @@ const calculateTotalScoreIncludingConferenceJoinedBonus =
     calculateConferenceJoinedBonusPoints
   );
 
-const toEventScoreFormat = (info) => `
+const createEventScoreSpecForUser = (user) =>
+  R.applySpec({
+    userName: R.always(user.userName),
+    eventJobName: R.always(user.eventJobName),
+    targetScore: R.always(user.targetScore),
+    totalScore: user.calculateTotalScoreByRecords,
+    scoreNeeded: (records) =>
+      R.subtract(user.targetScore, user.calculateTotalScoreByRecords(records)),
+    basePoint: user.calculateBasePointsByRecords,
+    bonusPoint: user.calculateBonusPointsByRecords,
+  });
+
+const generateEventScoreReport = (info) => `
   이름: ${info.userName}
   디아블로 직업 : ${info.eventJobName}
   목표 점수: ${info.targetScore}
@@ -99,6 +118,7 @@ const toEventScoreFormat = (info) => `
 `;
 
 module.exports = {
+  mapNested,
   isWeekend,
   isFrom1AMTill2AM,
   adjustToPrevDayEnd,
@@ -107,6 +127,7 @@ module.exports = {
   calculateBasePointsByRecords,
   calculateBonusPointsWith,
   calculateTotalScoreWith,
+  findUserByName,
   filterByWeekend,
   filterBy1AMTill2AM,
   filterByGroupStudy,
@@ -123,5 +144,6 @@ module.exports = {
   calculateConferenceJoinedBonusPoints,
   calculateTotalScoreIncludingConferenceJoinedBonus,
   formatToDateOnly,
-  toEventScoreFormat,
+  createEventScoreSpecForUser,
+  generateEventScoreReport,
 };

@@ -2,48 +2,37 @@ const allStudyRecords = require("./allStudyRecords");
 const allUsers = require("./userInfos");
 
 const R = require("ramda");
-const dayjs = require("dayjs");
 
 const {
+  mapNested,
   isFrom1AMTill2AM,
   adjustToPrevDayEnd,
+  findUserByName,
   sortByAscDate,
   uniqByDate,
-  toEventScoreFormat,
+  createEventScoreSpecForUser,
+  generateEventScoreReport,
 } = require("./utils");
 
-const preprocessAllStudyRecords = R.pipe(
+R.pipe(
   R.groupBy(R.prop("userName")),
   R.values,
-  R.map(
-    R.map(
-      R.when(R.pipe(R.prop("dateStr"), isFrom1AMTill2AM), adjustToPrevDayEnd)
-    )
+  mapNested(
+    R.when(R.pipe(R.prop("dateStr"), isFrom1AMTill2AM), adjustToPrevDayEnd)
   ),
   R.map(sortByAscDate),
   R.map(uniqByDate),
-  // @TODO: refactoring needed
-  R.map((record) => {
-    const userName = R.pipe(R.head, R.prop("userName"))(record);
-    const eventJobName = R.pipe(
-      R.find(R.propEq(userName, "userName")),
-      R.prop("eventJobName")
-    )(allUsers);
-    const user = R.find(R.propEq(userName, "userName"))(allUsers);
-    return R.applySpec({
-      userName: R.always(userName),
-      eventJobName: R.always(eventJobName),
-      targetScore: R.always(user.targetScore),
-      totalScore: user.calculateTotalScoreByRecords,
-      scoreNeeded: (record) =>
-        R.subtract(user.targetScore, user.calculateTotalScoreByRecords(record)),
-      basePoint: user.calculateBasePointsByRecords,
-      bonusPoint: user.calculateBonusPointsByRecords,
-    })(record);
-  }),
-  R.map(toEventScoreFormat),
+  R.map(
+    R.converge(
+      (records, user) => createEventScoreSpecForUser(user)(records),
+      [
+        R.identity,
+        R.pipe(R.head, R.prop("userName"), R.flip(findUserByName)(allUsers)),
+      ]
+    )
+  ),
+  // @TODO: 순위 별 내림차순으로 정렬하는 로직 추가
+  R.map(generateEventScoreReport),
   R.join(" \n\n\n "),
   R.tap(console.log)
-);
-
-preprocessAllStudyRecords(allStudyRecords);
+)(allStudyRecords);
