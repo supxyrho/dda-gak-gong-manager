@@ -5,7 +5,7 @@ const R = require("ramda");
 const dayjs = require("dayjs");
 
 const {
-  isBetween1AMTill2AM,
+  isFrom1AMTill2AM,
   sortByAscDate,
   uniqByDate,
   toEventScoreFormat,
@@ -18,7 +18,7 @@ const preprocessAllStudyRecords = R.pipe(
   R.map(
     R.map(
       R.when(
-        R.pipe(R.prop("dateStr"), isBetween1AMTill2AM),
+        R.pipe(R.prop("dateStr"), isFrom1AMTill2AM),
         R.evolve({
           dateStr: (dateStr) =>
             dayjs(dateStr, "YYYY-MM-DD:HH:mm")

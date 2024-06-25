@@ -1,4 +1,4 @@
-const { calculateBasePointsByRecords, calculateBonusPointsWith, calculateTotalPointsWith, filterByWeekend, filterByMidnightTo2AM, filterByGroupStudy, filterByNonMainFieldStudy, filterByConferenceJoined } = require("./utils");
+const { calculateBasePointsByRecords, calculateBonusPointsWith, calculateTotalPointsWith, filterByWeekend, filterBy1AMTill2AM, filterByGroupStudy, filterByNonMainFieldStudy, filterByConferenceJoined } = require("./utils");
 
 module.exports = [
   {
@@ -16,11 +16,11 @@ module.exports = [
     eventJobName: "어쎄신",
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculateBonusPointsWith(
-      filterByMidnightTo2AM
+      filterBy1AMTill2AM
     ),
     calculateTotalPointsByRecords: calculateTotalPointsWith(
       calculateBasePointsByRecords,
-      calculateBonusPointsWith(filterByMidnightTo2AM)
+      calculateBonusPointsWith(filterBy1AMTill2AM)
     ),
   },
 

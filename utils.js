@@ -1,16 +1,15 @@
 const R = require("ramda");
 const dayjs = require("dayjs");
 
-const getDayFromDateStr = (date) => dayjs(date).day();
-const isWeekend = R.pipe(getDayFromDateStr, R.either(R.equals(0), R.equals(6)));
-
+const parseDay = (date) => dayjs(date).day();
 const parseHour = (dateStr) => dayjs(dateStr, "YYYY-MM-DD HH:mm").hour();
 const parseMinute = (dateStr) => dayjs(dateStr, "YYYY-MM-DD HH:mm").minute();
 
+const isWeekend = R.pipe(parseDay, R.either(R.equals(0), R.equals(6)));
 const isBetween0hAnd1h = (hour) => R.includes(hour, [0, 1]);
 const is0Minute = (minute) => minute === 0;
 
-const isBetween1AMTill2AM = R.converge(R.or, [
+const isFrom1AMTill2AM = R.converge(R.or, [
   R.pipe(parseHour, isBetween0hAnd1h),
   R.both(R.pipe(parseHour, R.equals(2)), R.pipe(parseMinute, is0Minute)),
 ]);
@@ -22,8 +21,8 @@ const calculateTotalPointsWith = (fA, fB) =>
   R.pipe(R.converge(R.add, [fA, fB]));
 
 const filterByWeekend = R.filter(R.pipe(R.prop("dateStr"), isWeekend));
-const filterByMidnightTo2AM = R.filter(
-  R.pipe(R.prop("dateStr"), isBetween1AMTill2AM)
+const filterBy1AMTill2AM = R.filter(
+  R.pipe(R.prop("dateStr"), isFrom1AMTill2AM)
 );
 const filterByGroupStudy = R.filter(R.propEq("같이공부", "type"));
 const filterByNonMainFieldStudy = R.filter(
@@ -48,12 +47,12 @@ module.exports = {
   calculateBonusPointsWith,
   calculateTotalPointsWith,
   filterByWeekend,
-  filterByMidnightTo2AM,
+  filterBy1AMTill2AM,
   filterByGroupStudy,
   filterByNonMainFieldStudy,
   filterByConferenceJoined,
   isWeekend,
-  isBetween1AMTill2AM,
+  isFrom1AMTill2AM,
   sortByAscDate,
   uniqByDate,
   formatToDateOnly,
