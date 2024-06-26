@@ -15,24 +15,26 @@ const {
   generateEventScoreReport,
 } = require("./utils");
 
-const preprocess = R.pipe(
-  R.groupBy(R.prop("userName")),
-  R.values,
-  mapNested(
-    R.when(R.pipe(R.prop("dateStr"), isFrom1AMTill2AM), adjustToPrevDayEnd)
-  ),
-  R.map(sortByAscDate),
-  R.map(uniqByDate),
-  R.map(
-    R.converge(
-      (records, user) => createEventScoreSpecForUser(user)(records),
-      [
-        R.identity,
-        R.pipe(R.head, R.prop("userName"), R.flip(findUserByName)(allUsers)),
-      ]
-    )
-  ),
-  sortByDescTotalScore
+const preprocess = R.curry((allUsers, allStudyRecords) =>
+  R.pipe(
+    R.groupBy(R.prop("userName")),
+    R.values,
+    mapNested(
+      R.when(R.pipe(R.prop("dateStr"), isFrom1AMTill2AM), adjustToPrevDayEnd)
+    ),
+    R.map(sortByAscDate),
+    R.map(uniqByDate),
+    R.map(
+      R.converge(
+        (records, user) => createEventScoreSpecForUser(user)(records),
+        [
+          R.identity,
+          R.pipe(R.head, R.prop("userName"), R.flip(findUserByName)(allUsers)),
+        ]
+      )
+    ),
+    sortByDescTotalScore
+  )(allStudyRecords)
 );
 
 const printByConsole = R.pipe(
@@ -42,4 +44,13 @@ const printByConsole = R.pipe(
 );
 
 // main
-R.pipe(preprocess, R.tap(console.log), printByConsole)(allStudyRecords);
+R.pipe(
+  preprocess(allUsers),
+  R.tap(console.log),
+  printByConsole
+)(allStudyRecords);
+
+module.exports = {
+  preprocess,
+  printByConsole,
+};
