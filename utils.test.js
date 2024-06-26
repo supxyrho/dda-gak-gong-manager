@@ -1,6 +1,9 @@
 const { describe, expect, test } = require("@jest/globals");
 
-const { isFrom1AMTill2AM } = require("./utils");
+const { 
+  isFrom1AMTill2AM, 
+  calculateTotalScoreIncludingWeekendBonus,
+} = require("./utils");
 
 describe("isFrom1AMTill2AM", () => {
   test("23:59 is false", () => {
@@ -34,4 +37,85 @@ describe("isFrom1AMTill2AM", () => {
   });
 });
 
-describe()
+describe('calculateTotalScoreIncludingWeekendBonus', ()=> {
+  test("목록 중 날짜가 주말인 요소가 0개 한 경우, 총 배열 갯수 + 0 (주말 공부 횟수) 를 반환한다.",() => {
+    const arg = [
+      {
+        // 금요일
+        dateStr: "2024-06-28 ",
+      },
+      {
+        // 목요일
+        dateStr: "2024-06-27",
+      },
+      {
+        // 수요일
+        dateStr: "2024-06-26",
+      }
+    ]
+
+    const expected = calculateTotalScoreIncludingWeekendBonus(arg)
+    expect(expected).toBe(arg.length)
+  })
+
+  test("목록 중 날짜가 주말인 갯수가 1인 경우, 총 배열 갯수 + 1 (주말 갯수) 를 반환한다.",() => {
+
+    const arg = [
+    {
+      // 토요일
+      dateStr: "2024-06-29",
+    },
+    {
+      // 금요일
+      dateStr: "2024-06-28 ",
+    },
+    {
+      // 목요일
+      dateStr: "2024-06-27",
+    }]
+
+    const expected = calculateTotalScoreIncludingWeekendBonus(arg)
+
+    expect(expected).toBe(arg.length + 1)
+  })
+
+  test("목록 중 날짜가 주말인 갯수가 2인 경우, 총 배열 갯수 + 2 (주말 갯수) 를 반환한다.",() => {
+    const arg = [
+      {
+        // 일요일
+        dateStr: "2024-06-30 ",
+      },
+      {
+        // 토요일
+        dateStr: "2024-06-29",
+      },
+      {
+        // 금요일수
+      },
+    ]
+
+    const expected = calculateTotalScoreIncludingWeekendBonus(arg)
+    expect(expected).toBe(arg.length + 2)
+  })
+
+  test("목록 중 날짜가 주말인 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 주말 적용 갯수는 2) 를 반환한다.",() => {
+    const arg = [
+      {
+        // 일요일
+        dateStr: "2024-06-30 ",
+      },
+      {
+        // 토요우
+        dateStr: "2024-06-29",
+      },
+      {
+        // 토요일
+        dateStr: "2024-06-22 ",
+      },
+    ]
+
+    const expected = calculateTotalScoreIncludingWeekendBonus(arg)
+    expect(expected).toBe(arg.length + 2)
+  })
+})
+
