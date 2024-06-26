@@ -35,11 +35,11 @@ const preprocess = R.pipe(
   sortByDescTotalScore
 );
 
-const printResult = R.pipe(
+const print = R.pipe(
   R.map(generateEventScoreReport),
   R.join(" \n\n\n "),
   R.tap(console.log)
 );
 
 // main
-R.pipe(preprocess, R.tap(console.log), printResult)(allStudyRecords);
+R.pipe(preprocess, R.tap(console.log), print)(allStudyRecords);
