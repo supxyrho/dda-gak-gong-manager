@@ -5,7 +5,8 @@ const {
   calculateTotalScoreIncludingWeekendBonus,
   calculateTotalScoreIncluding1AMTo2AMBonus,
   calculateTotalScoreIncludingGroupStudyBonus,
-  calculateTotalScoreIncludingNonMainFieldStudyBonus
+  calculateTotalScoreIncludingNonMainFieldStudyBonus,
+  calculateTotalScoreIncludingConferenceJoinedBonus
 } = require("./utils");
 
 describe("isFrom1AMTill2AM", () => {
@@ -282,7 +283,7 @@ describe('calculateTotalScoreIncludingNonMainFieldStudyBonus', ()=> {
     const arg = [
       {
         type: '개별공부',
-        
+
       },
       {
         type: '개별공부',
@@ -344,6 +345,80 @@ describe('calculateTotalScoreIncludingNonMainFieldStudyBonus', ()=> {
     ]
 
     const expected = calculateTotalScoreIncludingNonMainFieldStudyBonus(arg)
+    expect(expected).toBe(arg.length + 2)
+  })
+})
+
+
+describe('calculateTotalScoreIncludingConferenceJoinedBonus', ()=> {
+  test("목록 중 type이 *컨퍼런스참여*의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.",() => {
+    const arg = [
+      {
+        type: '개별공부',
+        
+      },
+      {
+        type: '개별공부',
+      }
+    ]
+
+    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg)
+    expect(expected).toBe(arg.length)
+  })
+
+  test("목록 중 type이 *컨퍼런스참여*의 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.",() => {
+    const arg = [
+      {
+        // 컨퍼런스참여
+        type: '컨퍼런스참여',
+      },
+      {
+        type: '개별공부',
+      },
+      {
+        type: '개별공부',
+      }
+    ]
+
+    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg)
+    expect(expected).toBe(arg.length + 1)
+  })
+
+  test("목록 중 type이 *컨퍼런스참여*의 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.",() => {
+    const arg = [
+      {
+        // 컨퍼런스참여
+        type: '컨퍼런스참여',
+      },
+      {
+        // 컨퍼런스참여
+        type: '컨퍼런스참여',
+      },
+      {
+        type: '개별공부',
+      }
+    ]
+
+    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg)
+    expect(expected).toBe(arg.length + 2)
+  })
+
+  test("목록 중 type이 *컨퍼런스참여*의 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 횟수는 2) 를 반환한다.",() => {
+    const arg = [
+      {
+        // 컨퍼런스참여
+        type: '컨퍼런스참여',
+      },
+      {
+        // 컨퍼런스참여
+        type: '컨퍼런스참여',
+      },
+      {
+        type: '같이공부',
+      }
+    ]
+
+    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg)
     expect(expected).toBe(arg.length + 2)
   })
 })
