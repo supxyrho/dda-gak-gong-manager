@@ -9,12 +9,13 @@ const {
   adjustToPrevDayEnd,
   findUserByName,
   sortByAscDate,
+  sortByDescTotalScore,
   uniqByDate,
   createEventScoreSpecForUser,
   generateEventScoreReport,
 } = require("./utils");
 
-R.pipe(
+const preprocess = R.pipe(
   R.groupBy(R.prop("userName")),
   R.values,
   mapNested(
@@ -31,8 +32,14 @@ R.pipe(
       ]
     )
   ),
-  // @TODO: 순위 별 내림차순으로 정렬하는 로직 추가
+  sortByDescTotalScore
+);
+
+const printResult = R.pipe(
   R.map(generateEventScoreReport),
   R.join(" \n\n\n "),
   R.tap(console.log)
-)(allStudyRecords);
+);
+
+// main
+R.pipe(preprocess, R.tap(console.log), printResult)(allStudyRecords);

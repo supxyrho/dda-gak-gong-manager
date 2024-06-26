@@ -6,6 +6,7 @@ const mapNested = (fn) => R.map(R.map(fn));
 
 // Layer 1
 const sortByAscDate = R.sortWith([R.ascend(R.prop("dateStr"))]);
+const sortByDescTotalScore = R.sortWith([R.descend(R.prop("totalScore"))]);
 const formatToDateOnly = (dateStr) =>
   dayjs(dateStr, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
 const uniqByDate = R.uniqBy(R.pipe(R.prop("dateStr"), formatToDateOnly));
@@ -47,9 +48,7 @@ const filterBy1AMTill2AM = R.filter(
   R.pipe(R.prop("dateStr"), isFrom1AMTill2AM)
 );
 const filterByGroupStudy = R.filter(R.propEq("같이공부", "type"));
-const filterByNonMainFieldStudy = R.filter(
-  R.propEq("다른분야공부", "type")
-);
+const filterByNonMainFieldStudy = R.filter(R.propEq("다른분야공부", "type"));
 const filterByConferenceJoined = R.filter(R.propEq("컨퍼런스참여", "type"));
 
 // Layer 5 (기획 요구사항 레벨)
@@ -123,6 +122,7 @@ module.exports = {
   isFrom1AMTill2AM,
   adjustToPrevDayEnd,
   sortByAscDate,
+  sortByDescTotalScore,
   uniqByDate,
   calculateBasePointsByRecords,
   calculateBonusPointsWith,
