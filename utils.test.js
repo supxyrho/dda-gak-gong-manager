@@ -1,12 +1,12 @@
 const { describe, expect, test } = require("@jest/globals");
 
-const { 
-  isFrom1AMTill2AM, 
+const {
+  isFrom1AMTill2AM,
   calculateTotalScoreIncludingWeekendBonus,
   calculateTotalScoreIncluding1AMTo2AMBonus,
   calculateTotalScoreIncludingGroupStudyBonus,
   calculateTotalScoreIncludingNonMainFieldStudyBonus,
-  calculateTotalScoreIncludingConferenceJoinedBonus
+  calculateTotalScoreIncludingConferenceJoinedBonus,
 } = require("./utils");
 
 describe("isFrom1AMTill2AM", () => {
@@ -41,8 +41,8 @@ describe("isFrom1AMTill2AM", () => {
   });
 });
 
-describe('calculateTotalScoreIncludingWeekendBonus', ()=> {
-  test("목록 중 날짜가 주말인 요소가 0개 한 경우, 총 배열 갯수 + 0 를 반환한다.",() => {
+describe("calculateTotalScoreIncludingWeekendBonus", () => {
+  test("목록 중 날짜가 주말인 요소가 0개 한 경우, 총 배열 갯수 + 0 를 반환한다.", () => {
     const arg = [
       {
         // 금요일
@@ -55,35 +55,35 @@ describe('calculateTotalScoreIncludingWeekendBonus', ()=> {
       {
         // 수요일
         dateStr: "2024-06-26",
-      }
-    ]
+      },
+    ];
 
-    const expected = calculateTotalScoreIncludingWeekendBonus(arg)
-    expect(expected).toBe(arg.length)
-  })
+    const expected = calculateTotalScoreIncludingWeekendBonus(arg);
+    expect(expected).toBe(arg.length);
+  });
 
-  test("목록 중 날짜가 주말인 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.",() => {
-
+  test("목록 중 날짜가 주말인 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.", () => {
     const arg = [
-    {
-      // 토요일
-      dateStr: "2024-06-29",
-    },
-    {
-      // 금요일
-      dateStr: "2024-06-28 ",
-    },
-    {
-      // 목요일
-      dateStr: "2024-06-27",
-    }]
+      {
+        // 토요일
+        dateStr: "2024-06-29",
+      },
+      {
+        // 금요일
+        dateStr: "2024-06-28 ",
+      },
+      {
+        // 목요일
+        dateStr: "2024-06-27",
+      },
+    ];
 
-    const expected = calculateTotalScoreIncludingWeekendBonus(arg)
+    const expected = calculateTotalScoreIncludingWeekendBonus(arg);
 
-    expect(expected).toBe(arg.length + 1)
-  })
+    expect(expected).toBe(arg.length + 1);
+  });
 
-  test("목록 중 날짜가 주말인 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.",() => {
+  test("목록 중 날짜가 주말인 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.", () => {
     const arg = [
       {
         // 일요일
@@ -96,13 +96,13 @@ describe('calculateTotalScoreIncludingWeekendBonus', ()=> {
       {
         // 금요일수
       },
-    ]
+    ];
 
-    const expected = calculateTotalScoreIncludingWeekendBonus(arg)
-    expect(expected).toBe(arg.length + 2)
-  })
+    const expected = calculateTotalScoreIncludingWeekendBonus(arg);
+    expect(expected).toBe(arg.length + 2);
+  });
 
-  test("목록 중 날짜가 주말인 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 갯수는 2) 를 반환한다.",() => {
+  test("목록 중 날짜가 주말인 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 갯수는 2) 를 반환한다.", () => {
     const arg = [
       {
         // 일요일
@@ -116,16 +116,15 @@ describe('calculateTotalScoreIncludingWeekendBonus', ()=> {
         // 토요일
         dateStr: "2024-06-22 ",
       },
-    ]
+    ];
 
-    const expected = calculateTotalScoreIncludingWeekendBonus(arg)
-    expect(expected).toBe(arg.length + 2)
-  })
-})
+    const expected = calculateTotalScoreIncludingWeekendBonus(arg);
+    expect(expected).toBe(arg.length + 2);
+  });
+});
 
-
-describe('calculateTotalScoreIncluding1AMTo2AMBonus', ()=> {
-  test("목록 중 1AM ~ 2AM인 요소의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.",() => {
+describe("calculateTotalScoreIncluding1AMTo2AMBonus", () => {
+  test("목록 중 1AM ~ 2AM인 요소의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.", () => {
     const arg = [
       {
         dateStr: "2024-06-28 12:59",
@@ -133,292 +132,287 @@ describe('calculateTotalScoreIncluding1AMTo2AMBonus', ()=> {
       {
         dateStr: "2024-06-27 02:01 ",
       },
-    ]
+    ];
 
-    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg)
-    expect(expected).toBe(arg.length)
-  })
+    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg);
+    expect(expected).toBe(arg.length);
+  });
 
-  test("목록 중 1AM ~ 2AM인 요소의 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.",() => {
+  test("목록 중 1AM ~ 2AM인 요소의 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.", () => {
     const arg = [
       {
         dateStr: "2024-06-29 12:59",
       },
       {
-        // 1AM ~ 2AM 
+        // 1AM ~ 2AM
         dateStr: "2024-06-28 02:00 ",
       },
       {
         dateStr: "2024-06-27 02:01",
-      }
-    ]
+      },
+    ];
 
-    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg)
-    expect(expected).toBe(arg.length + 1)
-  })
+    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg);
+    expect(expected).toBe(arg.length + 1);
+  });
 
-  test("목록 중 1AM ~ 2AM인 요소의 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.",() => {
+  test("목록 중 1AM ~ 2AM인 요소의 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.", () => {
     const arg = [
       {
         dateStr: "2024-06-29 12:59",
       },
       {
-        // 1AM ~ 2AM 
+        // 1AM ~ 2AM
         dateStr: "2024-06-28 01:00 ",
       },
       {
-        // 1AM ~ 2AM 
+        // 1AM ~ 2AM
         dateStr: "2024-06-27 02:00 ",
       },
       {
         dateStr: "2024-06-26 02:01",
-      }
-    ]
+      },
+    ];
 
-    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg)
-    expect(expected).toBe(arg.length + 2)
-  })
+    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg);
+    expect(expected).toBe(arg.length + 2);
+  });
 
-  test("목록 중 1AM ~ 2AM인 요소의 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 횟수는 2) 를 반환한다.",() => {
+  test("목록 중 1AM ~ 2AM인 요소의 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 횟수는 2) 를 반환한다.", () => {
     const arg = [
       {
         dateStr: "2024-06-29 12:59",
       },
       {
-        // 1AM ~ 2AM 
+        // 1AM ~ 2AM
         dateStr: "2024-06-28 01:00 ",
       },
       {
-        // 1AM ~ 2AM 
+        // 1AM ~ 2AM
         dateStr: "2024-06-28 01:59 ",
       },
       {
-        // 1AM ~ 2AM 
+        // 1AM ~ 2AM
         dateStr: "2024-06-27 02:00",
       },
       {
         dateStr: "2024-06-27 02:01",
-      }
-    ]
+      },
+    ];
 
-    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg)
-    expect(expected).toBe(arg.length + 2)
-  })
-})
+    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg);
+    expect(expected).toBe(arg.length + 2);
+  });
+});
 
-
-describe('calculateTotalScoreIncludingGroupStudyBonus', ()=> {
-  test("목록 중 type이 *같이공부*의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.",() => {
+describe("calculateTotalScoreIncludingGroupStudyBonus", () => {
+  test("목록 중 type이 *같이공부*의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.", () => {
     const arg = [
       {
-        type: '개별공부',
+        type: "개별공부",
       },
       {
-        type: '개별공부',
-      }
-    ]
-
-    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg)
-    expect(expected).toBe(arg.length)
-  })
-
-  test("목록 중 type이 *같이공부*의 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.",() => {
-    const arg = [
-      {
-        // 같이공부
-        type: '같이공부',
+        type: "개별공부",
       },
-      {
-        type: '개별공부',
-      },
-      {
-        type: '개별공부',
-      }
-    ]
+    ];
 
-    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg)
-    expect(expected).toBe(arg.length + 1)
-  })
+    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg);
+    expect(expected).toBe(arg.length);
+  });
 
-  test("목록 중 type이 *같이공부*의 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.",() => {
+  test("목록 중 type이 *같이공부*의 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.", () => {
     const arg = [
       {
         // 같이공부
-        type: '같이공부',
+        type: "같이공부",
       },
       {
-        type: '같이공부',
+        type: "개별공부",
       },
       {
-        type: '개별공부',
-      }
-    ]
+        type: "개별공부",
+      },
+    ];
 
-    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg)
-    expect(expected).toBe(arg.length + 2)
-  })
+    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg);
+    expect(expected).toBe(arg.length + 1);
+  });
 
-  test("목록 중 type이 *같이공부*의 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 횟수는 2) 를 반환한다.",() => {
+  test("목록 중 type이 *같이공부*의 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.", () => {
+    const arg = [
+      {
+        // 같이공부
+        type: "같이공부",
+      },
+      {
+        type: "같이공부",
+      },
+      {
+        type: "개별공부",
+      },
+    ];
+
+    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg);
+    expect(expected).toBe(arg.length + 2);
+  });
+
+  test("목록 중 type이 *같이공부*의 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 횟수는 2) 를 반환한다.", () => {
     const arg = [
       {
         // 같이 공부
-        type: '같이공부',
+        type: "같이공부",
       },
       {
-        type: '같이공부',
+        type: "같이공부",
       },
       {
-        type: '같이공부',
-      }
-    ]
+        type: "같이공부",
+      },
+    ];
 
-    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg)
-    expect(expected).toBe(arg.length + 2)
-  })
-})
+    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg);
+    expect(expected).toBe(arg.length + 2);
+  });
+});
 
-
-describe('calculateTotalScoreIncludingNonMainFieldStudyBonus', ()=> {
-  test("목록 중 type이 *다른분야공부*의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.",() => {
+describe("calculateTotalScoreIncludingNonMainFieldStudyBonus", () => {
+  test("목록 중 type이 *다른분야공부*의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.", () => {
     const arg = [
       {
-        type: '개별공부',
-
+        type: "개별공부",
       },
       {
-        type: '개별공부',
-      }
-    ]
-
-    const expected = calculateTotalScoreIncludingNonMainFieldStudyBonus(arg)
-    expect(expected).toBe(arg.length)
-  })
-
-  test("목록 중 type이 *다른분야공부*의 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.",() => {
-    const arg = [
-      {
-        // 다른분야공부
-        type: '다른분야공부',
+        type: "개별공부",
       },
-      {
-        type: '개별공부',
-      },
-      {
-        type: '개별공부',
-      }
-    ]
+    ];
 
-    const expected = calculateTotalScoreIncludingNonMainFieldStudyBonus(arg)
-    expect(expected).toBe(arg.length + 1)
-  })
+    const expected = calculateTotalScoreIncludingNonMainFieldStudyBonus(arg);
+    expect(expected).toBe(arg.length);
+  });
 
-  test("목록 중 type이 *다른분야공부*의 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.",() => {
+  test("목록 중 type이 *다른분야공부*의 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.", () => {
     const arg = [
       {
         // 다른분야공부
-        type: '다른분야공부',
+        type: "다른분야공부",
       },
       {
-        type: '다른분야공부',
+        type: "개별공부",
       },
       {
-        type: '개별공부',
-      }
-    ]
+        type: "개별공부",
+      },
+    ];
 
-    const expected = calculateTotalScoreIncludingNonMainFieldStudyBonus(arg)
-    expect(expected).toBe(arg.length + 2)
-  })
+    const expected = calculateTotalScoreIncludingNonMainFieldStudyBonus(arg);
+    expect(expected).toBe(arg.length + 1);
+  });
 
-  test("목록 중 type이 *다른분야공부*의 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 횟수는 2) 를 반환한다.",() => {
+  test("목록 중 type이 *다른분야공부*의 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.", () => {
     const arg = [
       {
         // 다른분야공부
-        type: '다른분야공부',
+        type: "다른분야공부",
       },
       {
-        type: '다른분야공부',
+        type: "다른분야공부",
       },
       {
-        type: '같이공부',
-      }
-    ]
+        type: "개별공부",
+      },
+    ];
 
-    const expected = calculateTotalScoreIncludingNonMainFieldStudyBonus(arg)
-    expect(expected).toBe(arg.length + 2)
-  })
-})
+    const expected = calculateTotalScoreIncludingNonMainFieldStudyBonus(arg);
+    expect(expected).toBe(arg.length + 2);
+  });
 
-
-describe('calculateTotalScoreIncludingConferenceJoinedBonus', ()=> {
-  test("목록 중 type이 *컨퍼런스참여*의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.",() => {
+  test("목록 중 type이 *다른분야공부*의 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 횟수는 2) 를 반환한다.", () => {
     const arg = [
       {
-        type: '개별공부',
-        
+        // 다른분야공부
+        type: "다른분야공부",
       },
       {
-        type: '개별공부',
-      }
-    ]
+        type: "다른분야공부",
+      },
+      {
+        type: "같이공부",
+      },
+    ];
 
-    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg)
-    expect(expected).toBe(arg.length)
-  })
+    const expected = calculateTotalScoreIncludingNonMainFieldStudyBonus(arg);
+    expect(expected).toBe(arg.length + 2);
+  });
+});
 
-  test("목록 중 type이 *컨퍼런스참여*의 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.",() => {
+describe("calculateTotalScoreIncludingConferenceJoinedBonus", () => {
+  test("목록 중 type이 *컨퍼런스참여*의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.", () => {
     const arg = [
       {
-        // 컨퍼런스참여
-        type: '컨퍼런스참여',
+        type: "개별공부",
       },
       {
-        type: '개별공부',
+        type: "개별공부",
       },
-      {
-        type: '개별공부',
-      }
-    ]
+    ];
 
-    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg)
-    expect(expected).toBe(arg.length + 1)
-  })
+    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg);
+    expect(expected).toBe(arg.length);
+  });
 
-  test("목록 중 type이 *컨퍼런스참여*의 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.",() => {
-    const arg = [
-      {
-        // 컨퍼런스참여
-        type: '컨퍼런스참여',
-      },
-      {
-        // 컨퍼런스참여
-        type: '컨퍼런스참여',
-      },
-      {
-        type: '개별공부',
-      }
-    ]
-
-    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg)
-    expect(expected).toBe(arg.length + 2)
-  })
-
-  test("목록 중 type이 *컨퍼런스참여*의 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 횟수는 2) 를 반환한다.",() => {
+  test("목록 중 type이 *컨퍼런스참여*의 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.", () => {
     const arg = [
       {
         // 컨퍼런스참여
-        type: '컨퍼런스참여',
+        type: "컨퍼런스참여",
+      },
+      {
+        type: "개별공부",
+      },
+      {
+        type: "개별공부",
+      },
+    ];
+
+    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg);
+    expect(expected).toBe(arg.length + 1);
+  });
+
+  test("목록 중 type이 *컨퍼런스참여*의 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.", () => {
+    const arg = [
+      {
+        // 컨퍼런스참여
+        type: "컨퍼런스참여",
       },
       {
         // 컨퍼런스참여
-        type: '컨퍼런스참여',
+        type: "컨퍼런스참여",
       },
       {
-        type: '같이공부',
-      }
-    ]
+        type: "개별공부",
+      },
+    ];
 
-    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg)
-    expect(expected).toBe(arg.length + 2)
-  })
-})
+    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg);
+    expect(expected).toBe(arg.length + 2);
+  });
+
+  test("목록 중 type이 *컨퍼런스참여*의 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 횟수는 2) 를 반환한다.", () => {
+    const arg = [
+      {
+        // 컨퍼런스참여
+        type: "컨퍼런스참여",
+      },
+      {
+        // 컨퍼런스참여
+        type: "컨퍼런스참여",
+      },
+      {
+        type: "같이공부",
+      },
+    ];
+
+    const expected = calculateTotalScoreIncludingConferenceJoinedBonus(arg);
+    expect(expected).toBe(arg.length + 2);
+  });
+});
