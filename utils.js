@@ -48,7 +48,7 @@ const filterBy1AMTill2AM = R.filter(
 );
 const filterByGroupStudy = R.filter(R.propEq("같이공부", "type"));
 const filterByNonMainFieldStudy = R.filter(
-  R.filter(R.propEq("다른분야공부", "type"))
+  R.propEq("다른분야공부", "type")
 );
 const filterByConferenceJoined = R.filter(R.propEq("컨퍼런스참여", "type"));
 
