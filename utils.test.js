@@ -3,6 +3,7 @@ const { describe, expect, test } = require("@jest/globals");
 const { 
   isFrom1AMTill2AM, 
   calculateTotalScoreIncludingWeekendBonus,
+  calculateTotalScoreIncluding1AMTo2AMBonus
 } = require("./utils");
 
 describe("isFrom1AMTill2AM", () => {
@@ -119,3 +120,85 @@ describe('calculateTotalScoreIncludingWeekendBonus', ()=> {
   })
 })
 
+
+describe('calculateTotalScoreIncluding1AMTo2AMBonus', ()=> {
+  test("목록 중 1AM ~ 2AM인 요소의 갯수가 0인 경우, 총 배열 갯수 + 0 (주말 공부 횟수) 를 반환한다.",() => {
+    const arg = [
+      {
+        dateStr: "2024-06-28 12:59",
+      },
+      {
+        dateStr: "2024-06-27 02:01 ",
+      },
+    ]
+
+    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg)
+    expect(expected).toBe(arg.length)
+  })
+
+  test("목록 중 1AM ~ 2AM인 요소의 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.",() => {
+    const arg = [
+      {
+        dateStr: "2024-06-29 12:59",
+      },
+      {
+        // 1AM ~ 2AM 
+        dateStr: "2024-06-28 02:00 ",
+      },
+      {
+        dateStr: "2024-06-27 02:01",
+      }
+    ]
+
+    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg)
+    expect(expected).toBe(arg.length + 1)
+  })
+
+  test("목록 중 1AM ~ 2AM인 요소의 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.",() => {
+    const arg = [
+      {
+        dateStr: "2024-06-29 12:59",
+      },
+      {
+        // 1AM ~ 2AM 
+        dateStr: "2024-06-28 01:00 ",
+      },
+      {
+        // 1AM ~ 2AM 
+        dateStr: "2024-06-27 02:00 ",
+      },
+      {
+        dateStr: "2024-06-26 02:01",
+      }
+    ]
+
+    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg)
+    expect(expected).toBe(arg.length + 2)
+  })
+
+  test("목록 중 1AM ~ 2AM인 요소의 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 횟수는 2) 를 반환한다.",() => {
+    const arg = [
+      {
+        dateStr: "2024-06-29 12:59",
+      },
+      {
+        // 1AM ~ 2AM 
+        dateStr: "2024-06-28 01:00 ",
+      },
+      {
+        // 1AM ~ 2AM 
+        dateStr: "2024-06-28 01:59 ",
+      },
+      {
+        // 1AM ~ 2AM 
+        dateStr: "2024-06-27 02:00",
+      },
+      {
+        dateStr: "2024-06-27 02:01",
+      }
+    ]
+
+    const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg)
+    expect(expected).toBe(arg.length + 2)
+  })
+})
