@@ -42,7 +42,7 @@ describe("isFrom1AMTill2AM", () => {
 });
 
 describe('calculateTotalScoreIncludingWeekendBonus', ()=> {
-  test("목록 중 날짜가 주말인 요소가 0개 한 경우, 총 배열 갯수 + 0 (주말 공부 횟수) 를 반환한다.",() => {
+  test("목록 중 날짜가 주말인 요소가 0개 한 경우, 총 배열 갯수 + 0 를 반환한다.",() => {
     const arg = [
       {
         // 금요일
@@ -62,7 +62,7 @@ describe('calculateTotalScoreIncludingWeekendBonus', ()=> {
     expect(expected).toBe(arg.length)
   })
 
-  test("목록 중 날짜가 주말인 갯수가 1인 경우, 총 배열 갯수 + 1 (주말 갯수) 를 반환한다.",() => {
+  test("목록 중 날짜가 주말인 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.",() => {
 
     const arg = [
     {
@@ -83,7 +83,7 @@ describe('calculateTotalScoreIncludingWeekendBonus', ()=> {
     expect(expected).toBe(arg.length + 1)
   })
 
-  test("목록 중 날짜가 주말인 갯수가 2인 경우, 총 배열 갯수 + 2 (주말 갯수) 를 반환한다.",() => {
+  test("목록 중 날짜가 주말인 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.",() => {
     const arg = [
       {
         // 일요일
@@ -102,7 +102,7 @@ describe('calculateTotalScoreIncludingWeekendBonus', ()=> {
     expect(expected).toBe(arg.length + 2)
   })
 
-  test("목록 중 날짜가 주말인 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 주말 적용 갯수는 2) 를 반환한다.",() => {
+  test("목록 중 날짜가 주말인 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 갯수는 2) 를 반환한다.",() => {
     const arg = [
       {
         // 일요일
@@ -125,7 +125,7 @@ describe('calculateTotalScoreIncludingWeekendBonus', ()=> {
 
 
 describe('calculateTotalScoreIncluding1AMTo2AMBonus', ()=> {
-  test("목록 중 1AM ~ 2AM인 요소의 갯수가 0인 경우, 총 배열 갯수 + 0 (주말 공부 횟수) 를 반환한다.",() => {
+  test("목록 중 1AM ~ 2AM인 요소의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.",() => {
     const arg = [
       {
         dateStr: "2024-06-28 12:59",
@@ -208,7 +208,7 @@ describe('calculateTotalScoreIncluding1AMTo2AMBonus', ()=> {
 
 
 describe('calculateTotalScoreIncludingGroupStudyBonus', ()=> {
-  test("목록 중 type이 *같이공부*의 갯수가 0인 경우, 총 배열 갯수 + 0 (주말 공부 횟수) 를 반환한다.",() => {
+  test("목록 중 type이 *같이공부*의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.",() => {
     const arg = [
       {
         type: '개별공부',
@@ -279,7 +279,7 @@ describe('calculateTotalScoreIncludingGroupStudyBonus', ()=> {
 
 
 describe('calculateTotalScoreIncludingNonMainFieldStudyBonus', ()=> {
-  test("목록 중 type이 *다른분야공부*의 갯수가 0인 경우, 총 배열 갯수 + 0 (주말 공부 횟수) 를 반환한다.",() => {
+  test("목록 중 type이 *다른분야공부*의 갯수가 0인 경우, 총 배열 갯수 + 0 를 반환한다.",() => {
     const arg = [
       {
         type: '개별공부',
