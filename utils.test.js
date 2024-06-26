@@ -3,7 +3,8 @@ const { describe, expect, test } = require("@jest/globals");
 const { 
   isFrom1AMTill2AM, 
   calculateTotalScoreIncludingWeekendBonus,
-  calculateTotalScoreIncluding1AMTo2AMBonus
+  calculateTotalScoreIncluding1AMTo2AMBonus,
+  calculateTotalScoreIncludingGroupStudyBonus
 } = require("./utils");
 
 describe("isFrom1AMTill2AM", () => {
@@ -199,6 +200,77 @@ describe('calculateTotalScoreIncluding1AMTo2AMBonus', ()=> {
     ]
 
     const expected = calculateTotalScoreIncluding1AMTo2AMBonus(arg)
+    expect(expected).toBe(arg.length + 2)
+  })
+})
+
+
+describe('calculateTotalScoreIncludingGroupStudyBonus', ()=> {
+  test("목록 중 type이 *같이공부*의 갯수가 0인 경우, 총 배열 갯수 + 0 (주말 공부 횟수) 를 반환한다.",() => {
+    const arg = [
+      {
+        type: '개별공부',
+      },
+      {
+        type: '개별공부',
+      }
+    ]
+
+    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg)
+    expect(expected).toBe(arg.length)
+  })
+
+  test("목록 중 type이 *같이공부*의 갯수가 1인 경우, 총 배열 갯수 + 1 를 반환한다.",() => {
+    const arg = [
+      {
+        // 같이 공부
+        type: '같이공부',
+      },
+      {
+        type: '개별공부',
+      },
+      {
+        type: '개별공부',
+      }
+    ]
+
+    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg)
+    expect(expected).toBe(arg.length + 1)
+  })
+
+  test("목록 중 type이 *같이공부*의 갯수가 2인 경우, 총 배열 갯수 + 2 를 반환한다.",() => {
+    const arg = [
+      {
+        // 같이 공부
+        type: '같이공부',
+      },
+      {
+        type: '같이공부',
+      },
+      {
+        type: '개별공부',
+      }
+    ]
+
+    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg)
+    expect(expected).toBe(arg.length + 2)
+  })
+
+  test("목록 중 type이 *같이공부*의 갯수가 3인 경우, 총 배열 갯수 + 2 (최대 적용 횟수는 2) 를 반환한다.",() => {
+    const arg = [
+      {
+        // 같이 공부
+        type: '같이공부',
+      },
+      {
+        type: '같이공부',
+      },
+      {
+        type: '같이공부',
+      }
+    ]
+
+    const expected = calculateTotalScoreIncludingGroupStudyBonus(arg)
     expect(expected).toBe(arg.length + 2)
   })
 })
