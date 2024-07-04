@@ -6,6 +6,7 @@ const mapNested = (fn) => R.map(R.map(fn));
 
 // Layer 1
 const sortByAscDate = R.sortWith([R.ascend(R.prop("dateStr"))]);
+const sortByDescDate = R.sortWith([R.descend(R.prop("dateStr"))]);
 const sortByDescTotalScore = R.sortWith([R.descend(R.prop("totalScore"))]);
 const formatToDateOnly = (dateStr) =>
   dayjs(dateStr, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
@@ -18,6 +19,11 @@ const adjustToPrevDayEnd = R.evolve({
       .set("minute", 59)
       .format("YYYY-MM-DD:HH:mm"),
 });
+
+const lastStudyTime = R.pipe(sortByAscDate, R.last, R.prop("dateStr"));
+const daySinceLastStudy = R.pipe(lastStudyTime, (dateStr) =>
+  dayjs().diff(dateStr, "day")
+);
 
 const parseDay = (date) => dayjs(date).day();
 const parseHour = (dateStr) => dayjs(dateStr, "YYYY-MM-DD HH:mm").hour();
@@ -107,12 +113,17 @@ const createEventScoreSpecForUser = (user) =>
     bonusPoint: user.calculateBonusPointsByRecords,
   });
 
-const generateEventScoreReport = (info) => `
+const generateUserSpecReport = (info) => `
   이름: ${info.userName}
-  디아블로 직업 : ${info.eventJobName}
+  헤택 : ${info.eventJobName}
   목표 점수: ${info.targetScore}
-  총 획득 점수: ${info.totalScore} (인증: ${info.basePoint} + 보너스: ${info.bonusPoint})
+  총 획득 점수: ${info.totalScore} (인증: ${info.basePoint} + 보너스: ${
+  info.bonusPoint
+})
   남은 점수: ${info.scoreNeeded}
+  마지막 스터디 시간: ${info.lastStudyTime} ${
+  info.daySinceLastStudy === 0 ? "(당일)" : `(${info.daySinceLastStudy}일 경과)`
+}
 
 `;
 
@@ -123,6 +134,8 @@ module.exports = {
   adjustToPrevDayEnd,
   sortByAscDate,
   sortByDescTotalScore,
+  lastStudyTime,
+  daySinceLastStudy,
   uniqByDate,
   calculateBasePointsByRecords,
   calculateBonusPointsWith,
@@ -145,5 +158,5 @@ module.exports = {
   calculateTotalScoreIncludingConferenceJoinedBonus,
   formatToDateOnly,
   createEventScoreSpecForUser,
-  generateEventScoreReport,
+  generateUserSpecReport,
 };
