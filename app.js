@@ -48,13 +48,16 @@ const preprocess = R.curry((allUsers, allStudyRecords) =>
                 R.prop("calculateBonusPointsByRecords"),
                 R.applyTo(R.__)(records)
               ),
-              scoreNeeded: R.converge(R.subtract, [
-                R.prop("targetScore"),
-                R.pipe(
-                  R.prop("calculateTotalScoreByRecords"),
-                  R.applyTo(R.__)(records)
-                ),
-              ]),
+              scoreNeeded: R.converge(
+                R.pipe(R.subtract, R.clamp(0, Infinity)),
+                [
+                  R.prop("targetScore"),
+                  R.pipe(
+                    R.prop("calculateTotalScoreByRecords"),
+                    R.applyTo(R.__)(records)
+                  ),
+                ]
+              ),
             })(user),
             R.applySpec({
               lastStudyTime: lastStudyTime,
