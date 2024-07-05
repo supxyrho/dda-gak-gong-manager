@@ -101,18 +101,6 @@ const calculateTotalScoreIncludingConferenceJoinedBonus =
     calculateConferenceJoinedBonusPoints
   );
 
-const createEventScoreSpecForUser = (user) =>
-  R.applySpec({
-    userName: R.always(user.userName),
-    eventJobName: R.always(user.eventJobName),
-    targetScore: R.always(user.targetScore),
-    totalScore: user.calculateTotalScoreByRecords,
-    scoreNeeded: (records) =>
-      R.subtract(user.targetScore, user.calculateTotalScoreByRecords(records)),
-    basePoint: user.calculateBasePointsByRecords,
-    bonusPoint: user.calculateBonusPointsByRecords,
-  });
-
 const generateUserSpecReport = (info) => `
   이름: ${info.userName}
   헤택 : ${info.eventJobName}
@@ -157,6 +145,5 @@ module.exports = {
   calculateConferenceJoinedBonusPoints,
   calculateTotalScoreIncludingConferenceJoinedBonus,
   formatToDateOnly,
-  createEventScoreSpecForUser,
   generateUserSpecReport,
 };
