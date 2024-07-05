@@ -1,8 +1,5 @@
 const { describe, expect, test } = require("@jest/globals");
 
-const dayjs = require("dayjs");
-const R = require("ramda");
-
 const { preprocess } = require("./app");
 
 const {
