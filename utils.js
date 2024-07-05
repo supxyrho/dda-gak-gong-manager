@@ -22,7 +22,7 @@ const adjustToPrevDayEnd = R.evolve({
 
 const lastStudyTime = R.pipe(sortByAscDate, R.last, R.prop("dateStr"));
 const daySinceLastStudy = R.pipe(lastStudyTime, (dateStr) =>
-  dayjs().diff(dateStr, "day")
+  dayjs().startOf("day").diff(dayjs(dateStr).startOf("day"), "day")
 );
 
 const parseDay = (date) => dayjs(date).day();
@@ -102,17 +102,16 @@ const calculateTotalScoreIncludingConferenceJoinedBonus =
   );
 
 const generateUserSpecReport = (info) => `
-  이름: ${info.userName}
-  헤택 : ${info.eventJobName}
-  목표 점수: ${info.targetScore}
-  총 획득 점수: ${info.totalScore} (인증: ${info.basePoint} + 보너스: ${
+이름: ${info.userName}
+헤택 : ${info.eventJobName}
+목표 점수: ${info.targetScore}
+총 획득 점수: ${info.totalScore} (인증: ${info.basePoint} + 보너스: ${
   info.bonusPoint
 })
-  남은 점수: ${info.scoreNeeded}
-  마지막 스터디 시간: ${info.lastStudyTime} ${
-  info.daySinceLastStudy === 0 ? "(당일)" : `(${info.daySinceLastStudy}일 경과)`
+남은 점수: ${info.scoreNeeded}
+마지막 스터디 시간: ${info.lastStudyTime} ${
+  info.daySinceLastStudy === 0 ? "(당일)" : `(${info.daySinceLastStudy}일 전)`
 }
-
 `;
 
 module.exports = {
