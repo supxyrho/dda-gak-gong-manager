@@ -22,11 +22,21 @@ module.exports = [
   {
     dateStr: "2024-07-03 21:49",
     userName: "최신영",
-    type: "개발공부",
+    type: "같이공부",
   },
   {
     dateStr: "2024-07-04 23:51",
     userName: "최신영",
+    type: "개발공부",
+  },
+  {
+    dateStr: "2024-07-05 00:19",
+    userName: "김규태",
+    type: "개발공부",
+  },
+  {
+    dateStr: "2024-07-05 20:46",
+    userName: "김규태",
     type: "개발공부",
   },
 
