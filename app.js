@@ -13,7 +13,6 @@ const {
   uniqByDate,
   lastStudyTime,
   daySinceLastStudy,
-  createEventScoreSpecForUser,
   generateUserSpecReport,
 } = require("./utils");
 
