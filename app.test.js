@@ -1,5 +1,6 @@
 const { describe, expect, test } = require("@jest/globals");
 
+const dayjs = require("dayjs");
 const R = require("ramda");
 
 const { preprocess } = require("./app");
@@ -17,6 +18,12 @@ const {
   calculateConferenceJoinedBonusPoints,
   calculateTotalScoreIncludingConferenceJoinedBonus,
 } = require("./utils");
+
+const fixedDate = '2024-07-05';
+jest.mock('dayjs', () => {
+  const actualDayjs = jest.requireActual('dayjs');
+  return jest.fn(() => actualDayjs(fixedDate));
+});
 
 describe("preprocess", () => {
   test("빈 배열인 경우, 빈 배열을 반환한다.", () => {
@@ -108,19 +115,19 @@ describe("preprocess", () => {
       // B
       {
         // 1AM ~ 2AM
-        dateStr: "2024-06-28 01:00 ",
+        dateStr: "2024-06-28 01:00",
         userName: "B",
         type: "같이공부",
       },
       {
         // 1AM ~ 2AM
-        dateStr: "2024-06-29 01:00 ",
+        dateStr: "2024-06-29 01:00",
         userName: "B",
         type: "같이공부",
       },
       {
         // 1AM ~ 2AM
-        dateStr: "2024-06-30 01:00 ",
+        dateStr: "2024-06-30 01:00",
         userName: "B",
         type: "같이공부",
       },
@@ -128,19 +135,19 @@ describe("preprocess", () => {
       // C
       {
         // 같이 공부
-        dateStr: "2024-06-28 01:00 ",
+        dateStr: "2024-06-28 01:00",
         userName: "C",
         type: "같이공부",
       },
       {
         // 같이 공부
-        dateStr: "2024-06-29 01:00 ",
+        dateStr: "2024-06-29 01:00",
         userName: "C",
         type: "같이공부",
       },
       {
         // 같이 공부
-        dateStr: "2024-06-30 01:00 ",
+        dateStr: "2024-06-30 01:00",
         userName: "C",
         type: "같이공부",
       },
@@ -150,19 +157,19 @@ describe("preprocess", () => {
       // E
       {
         // 다른분야공부
-        dateStr: "2024-06-28 01:00 ",
+        dateStr: "2024-06-28 01:00",
         userName: "E",
         type: "다른분야공부",
       },
       {
         // 다른분야공부
-        dateStr: "2024-06-29 01:00 ",
+        dateStr: "2024-06-29 01:00",
         userName: "E",
         type: "다른분야공부",
       },
       {
         // 다른분야공부
-        dateStr: "2024-06-30 01:00 ",
+        dateStr: "2024-06-30 01:00",
         userName: "E",
         type: "다른분야공부",
       },
@@ -170,19 +177,19 @@ describe("preprocess", () => {
       // F
       {
         // 컨퍼런스참여
-        dateStr: "2024-06-28 01:00 ",
+        dateStr: "2024-06-28 01:00",
         userName: "F",
         type: "컨퍼런스참여",
       },
       {
         // 컨퍼런스참여
-        dateStr: "2024-06-29 01:00 ",
+        dateStr: "2024-06-29 01:00",
         userName: "F",
         type: "컨퍼런스참여",
       },
       {
         // 컨퍼런스참여
-        dateStr: "2024-06-30 01:00 ",
+        dateStr: "2024-06-30 01:00",
         userName: "F",
         type: "컨퍼런스참여",
       },
@@ -198,6 +205,8 @@ describe("preprocess", () => {
         targetScore: 15,
         totalScore: 5,
         userName: "A",
+        daySinceLastStudy: 5,
+        lastStudyTime: "2024-06-30 06:00",
       },
       {
         basePoint: 3,
@@ -207,6 +216,8 @@ describe("preprocess", () => {
         targetScore: 15,
         totalScore: 5,
         userName: "B",
+        daySinceLastStudy: 5,
+        lastStudyTime: "2024-06-30 01:00",
       },
       {
         basePoint: 3,
@@ -216,6 +227,9 @@ describe("preprocess", () => {
         targetScore: 15,
         totalScore: 5,
         userName: "C",
+        daySinceLastStudy: 6,
+        lastStudyTime: "2024-06-30 01:00",
+
       },
       {
         basePoint: 3,
@@ -225,6 +239,8 @@ describe("preprocess", () => {
         targetScore: 15,
         totalScore: 5,
         userName: "E",
+        daySinceLastStudy: 5,
+        lastStudyTime: "2024-06-30 01:00",
       },
       {
         basePoint: 3,
@@ -234,6 +250,8 @@ describe("preprocess", () => {
         targetScore: 15,
         totalScore: 5,
         userName: "F",
+        daySinceLastStudy: 5,
+        lastStudyTime: "2024-06-30 01:00",
       },
     ]);
   });
