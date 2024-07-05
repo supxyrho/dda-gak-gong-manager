@@ -10,7 +10,7 @@ const sortByDescDate = R.sortWith([R.descend(R.prop("dateStr"))]);
 const sortByDescTotalScore = R.sortWith([R.descend(R.prop("totalScore"))]);
 const formatToDateOnly = (dateStr) =>
   dayjs(dateStr, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD");
-const uniqByDate = R.uniqBy(R.pipe(R.prop("dateStr"), formatToDateOnly));
+const uniqueByDay = R.uniqBy(R.pipe(R.prop("dateStr"), formatToDateOnly));
 const adjustToPrevDayEnd = R.evolve({
   dateStr: (dateStr) =>
     dayjs(dateStr, "YYYY-MM-DD:HH:mm")
@@ -124,7 +124,7 @@ module.exports = {
   sortByDescTotalScore,
   lastStudyTime,
   daySinceLastStudy,
-  uniqByDate,
+  uniqueByDay,
   calculateBasePointsByRecords,
   calculateBonusPointsWith,
   calculateTotalScoreWith,

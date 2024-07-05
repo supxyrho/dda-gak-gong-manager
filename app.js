@@ -10,7 +10,7 @@ const {
   findUserByName,
   sortByAscDate,
   sortByDescTotalScore,
-  uniqByDate,
+  uniqueByDay,
   lastStudyTime,
   daySinceLastStudy,
   generateUserSpecReport,
@@ -24,7 +24,7 @@ const preprocess = R.curry((allUsers, allStudyRecords) =>
       R.when(R.pipe(R.prop("dateStr"), isFrom1AMTill2AM), adjustToPrevDayEnd)
     ),
     R.map(sortByAscDate),
-    R.map(uniqByDate),
+    R.map(uniqueByDay),
     R.map(
       R.converge(
         (records, user) =>
