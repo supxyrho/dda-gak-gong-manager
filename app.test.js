@@ -120,86 +120,86 @@ describe("preprocess", () => {
       },
 
       // // B
-      // {
-      //   // 1AM ~ 2AM
-      //   dateStr: "2024-06-28 01:00",
-      //   userName: "B",
-      //   type: "같이공부",
-      // },
-      // {
-      //   // 1AM ~ 2AM
-      //   dateStr: "2024-06-29 01:00",
-      //   userName: "B",
-      //   type: "같이공부",
-      // },
-      // {
-      //   // 1AM ~ 2AM
-      //   dateStr: "2024-06-30 01:00",
-      //   userName: "B",
-      //   type: "같이공부",
-      // },
+      {
+        // 1AM ~ 2AM
+        dateStr: "2024-06-28 01:00",
+        userName: "B",
+        type: "같이공부",
+      },
+      {
+        // 1AM ~ 2AM
+        dateStr: "2024-06-29 01:00",
+        userName: "B",
+        type: "같이공부",
+      },
+      {
+        // 1AM ~ 2AM
+        dateStr: "2024-06-30 01:00",
+        userName: "B",
+        type: "같이공부",
+      },
 
       // // C
-      // {
-      //   // 같이 공부
-      //   dateStr: "2024-06-28 01:00",
-      //   userName: "C",
-      //   type: "같이공부",
-      // },
-      // {
-      //   // 같이 공부
-      //   dateStr: "2024-06-29 01:00",
-      //   userName: "C",
-      //   type: "같이공부",
-      // },
-      // {
-      //   // 같이 공부
-      //   dateStr: "2024-06-30 01:00",
-      //   userName: "C",
-      //   type: "같이공부",
-      // },
+      {
+        // 같이 공부
+        dateStr: "2024-06-28 01:00",
+        userName: "C",
+        type: "같이공부",
+      },
+      {
+        // 같이 공부
+        dateStr: "2024-06-29 01:00",
+        userName: "C",
+        type: "같이공부",
+      },
+      {
+        // 같이 공부
+        dateStr: "2024-06-30 01:00",
+        userName: "C",
+        type: "같이공부",
+      },
 
       // // D 생략
 
       // // E
-      // {
-      //   // 다른분야공부
-      //   dateStr: "2024-06-28 01:00",
-      //   userName: "E",
-      //   type: "다른분야공부",
-      // },
-      // {
-      //   // 다른분야공부
-      //   dateStr: "2024-06-29 01:00",
-      //   userName: "E",
-      //   type: "다른분야공부",
-      // },
-      // {
-      //   // 다른분야공부
-      //   dateStr: "2024-06-30 01:00",
-      //   userName: "E",
-      //   type: "다른분야공부",
-      // },
+      {
+        // 다른분야공부
+        dateStr: "2024-06-28 01:00",
+        userName: "E",
+        type: "다른분야공부",
+      },
+      {
+        // 다른분야공부
+        dateStr: "2024-06-29 01:00",
+        userName: "E",
+        type: "다른분야공부",
+      },
+      {
+        // 다른분야공부
+        dateStr: "2024-06-30 01:00",
+        userName: "E",
+        type: "다른분야공부",
+      },
 
       // // F
-      // {
-      //   // 컨퍼런스참여
-      //   dateStr: "2024-06-28 01:00",
-      //   userName: "F",
-      //   type: "컨퍼런스참여",
-      // },
-      // {
-      //   // 컨퍼런스참여
-      //   dateStr: "2024-06-29 01:00",
-      //   userName: "F",
-      //   type: "컨퍼런스참여",
-      // },
-      // {
-      //   // 컨퍼런스참여
-      //   dateStr: "2024-06-30 01:00",
-      //   userName: "F",
-      //   type: "컨퍼런스참여",
-      // },
+      {
+        // 컨퍼런스참여
+        dateStr: "2024-06-28 01:00",
+        userName: "F",
+        type: "컨퍼런스참여",
+      },
+      {
+        // 컨퍼런스참여
+        dateStr: "2024-06-29 01:00",
+        userName: "F",
+        type: "컨퍼런스참여",
+      },
+      {
+        // 컨퍼런스참여
+        dateStr: "2024-06-30 01:00",
+        userName: "F",
+        type: "컨퍼런스참여",
+      },
     ];
 
     const expected = preprocess(allUsers, allStudyRecords);
@@ -213,54 +213,54 @@ describe("preprocess", () => {
         targetScore: 15,
         totalScore: 5,
         userName: "A",
-        daySinceLastStudy: 4,
+        daySinceLastStudy: 5,
         lastStudyTime: "2024-06-30 06:00",
       },
-      // {
-      //   basePoint: 3,
-      //   bonusPoint: 2,
-      //   eventJobName: "어쎄신",
-      //   scoreNeeded: 10,
-      //   targetScore: 15,
-      //   totalScore: 5,
-      //   userName: "B",
-      //   daySinceLastStudy: 5,
-      //   lastStudyTime: "2024-06-30 06:00",
-      // },
-      // {
-      //   basePoint: 3,
-      //   bonusPoint: 2,
-      //   eventJobName: "드루이드",
-      //   scoreNeeded: 10,
-      //   targetScore: 15,
-      //   totalScore: 5,
-      //   userName: "C",
-      //   daySinceLastStudy: 6,
-      //   lastStudyTime: "2024-06-30 06:00",
+      {
+        basePoint: 3,
+        bonusPoint: 2,
+        eventJobName: "어쎄신",
+        scoreNeeded: 10,
+        targetScore: 15,
+        totalScore: 5,
+        userName: "B",
+        daySinceLastStudy: 5,
+        lastStudyTime: "2024-06-30 01:00",
+      },
+      {
+        basePoint: 3,
+        bonusPoint: 2,
+        eventJobName: "드루이드",
+        scoreNeeded: 10,
+        targetScore: 15,
+        totalScore: 5,
+        userName: "C",
+        daySinceLastStudy: 5,
+        lastStudyTime: "2024-06-30 01:00",
 
-      // },
-      // {
-      //   basePoint: 3,
-      //   bonusPoint: 2,
-      //   eventJobName: "소서리스",
-      //   scoreNeeded: 10,
-      //   targetScore: 15,
-      //   totalScore: 5,
-      //   userName: "E",
-      //   daySinceLastStudy: 5,
-      //   lastStudyTime: "2024-06-30 0:00",
-      // },
-      // {
-      //   basePoint: 3,
-      //   bonusPoint: 2,
-      //   eventJobName: "네크로멘서",
-      //   scoreNeeded: 10,
-      //   targetScore: 15,
-      //   totalScore: 5,
-      //   userName: "F",
-      //   daySinceLastStudy: 5,
-      //   lastStudyTime: "2024-06-30 01:00",
-      // },
+      },
+      {
+        basePoint: 3,
+        bonusPoint: 2,
+        eventJobName: "소서리스",
+        scoreNeeded: 10,
+        targetScore: 15,
+        totalScore: 5,
+        userName: "E",
+        daySinceLastStudy: 5,
+        lastStudyTime: "2024-06-30 01:00",
+      },
+      {
+        basePoint: 3,
+        bonusPoint: 2,
+        eventJobName: "네크로멘서",
+        scoreNeeded: 10,
+        targetScore: 15,
+        totalScore: 5,
+        userName: "F",
+        daySinceLastStudy: 5,
+        lastStudyTime: "2024-06-30 01:00",
+      },
     ]));
   });
 });
