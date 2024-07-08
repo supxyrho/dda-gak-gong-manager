@@ -44,9 +44,9 @@ module.exports = [
       "(최대 2회까지) 개발 외 타 분야 학습 인증 시, 2회 인증 보너스 제공",
     targetScore: 10,
     calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateConferenceJoinedBonusPoints,
+    calculateBonusPointsByRecords: calculateNonMainFieldStudyBonusPoints,
     calculateTotalScoreByRecords:
-      calculateTotalScoreIncludingConferenceJoinedBonus,
+    calculateTotalScoreIncludingNonMainFieldStudyBonus,
   },
 
   // {
