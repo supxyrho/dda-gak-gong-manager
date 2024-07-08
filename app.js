@@ -97,7 +97,7 @@ const preprocess = R.curry((allUsers, allStudyRecords) =>
       R.forEach(
         R.pipe(
           R.values, 
-          R.forEach(R.when((value) => value === undefined, ()=> { throw new Error('undefined value detected in object')}))
+          R.forEach(R.when(R.equals(undefined), ()=> { throw new Error('undefined value detected in object')}))
         )
       )
     ),
