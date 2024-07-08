@@ -109,8 +109,8 @@ const generateUserSpecReport = (info) => `
   info.bonusPoint
 })
 남은 점수: ${info.scoreNeeded}
-마지막 스터디 시간: ${info.lastStudyTime} ${
-  info.daySinceLastStudy === 0 ? "(당일)" : `(${info.daySinceLastStudy}일 전)`
+마지막 스터디 시간: ${info.lastStudyTime ?? '없음'} ${
+  !info.daySinceLastStudy ? '' : info.daySinceLastStudy === 0 ? "(당일)" : `(${info.daySinceLastStudy}일 전)`
 }
 `;
 

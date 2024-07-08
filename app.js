@@ -69,6 +69,38 @@ const preprocess = R.curry((allUsers, allStudyRecords) =>
           ]
       )
     ),
+    R.converge(
+      R.concat,
+      [
+        R.identity,
+        R.pipe(
+          R.differenceWith(R.eqProps('userName'), allUsers),
+          R.map(
+            R.applySpec({
+              userName: R.prop('userName'), 
+              eventJobName: R.prop('eventJobName'),
+              targetScore: R.prop('targetScore'),
+              totalScore: R.always(0),
+              basePoint: R.always(0),
+              bonusPoint: R.always(0),
+              scoreNeeded: R.prop('targetScore'),
+              lastStudyTime: R.always(null),
+              daySinceLastStudy: R.always(null),
+            })
+          )
+        )
+      ]
+    ),
+    // @brief : JSON에 기입 시, 잘못 기입한 값이 있을 수 있으므로, undefined 값이 있는 객체가 있는지 확인 후, 에러를 발생시키도록 처리
+    // @TODO: 추후 에러가 발생한 객체만 별도 모나드 처리 후 별도 처리하고, 에러가 발생하지 않은 객체는 정상 출력하도록 처리
+    R.tap(
+      R.forEach(
+        R.pipe(
+          R.values, 
+          R.forEach(R.when((value) => value === undefined, ()=> { throw new Error('undefined value detected in object')}))
+        )
+      )
+    ),
     sortByDescTotalScore
   )(allStudyRecords)
 );
