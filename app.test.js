@@ -34,7 +34,7 @@ describe("preprocess", () => {
     const allUsers = [
       {
         userName: "A",
-        eventJobName: "바바리안",
+        bonusBenefitDescription: "바바리안",
         targetScore: 15,
         calculateBasePointsByRecords,
         calculateBonusPointsByRecords: calculateWeekendBonusPoints,
@@ -49,7 +49,7 @@ describe("preprocess", () => {
     const allUsers = [
       {
         userName: "A",
-        eventJobName: "바바리안",
+        bonusBenefitDescription: "바바리안",
         targetScore: 15,
         calculateBasePointsByRecords,
         calculateBonusPointsByRecords: calculateWeekendBonusPoints,
@@ -57,7 +57,7 @@ describe("preprocess", () => {
       },
       {
         userName: "B",
-        eventJobName: "어쎄신",
+        bonusBenefitDescription: "어쎄신",
         targetScore: 15,
         calculateBasePointsByRecords,
         calculateBonusPointsByRecords: calculate1AMTo2AMBonusPoints,
@@ -65,7 +65,7 @@ describe("preprocess", () => {
       },
       {
         userName: "C",
-        eventJobName: "드루이드",
+        bonusBenefitDescription: "드루이드",
         targetScore: 15,
         calculateBasePointsByRecords,
         calculateBonusPointsByRecords: calculateGroupStudyBonusPoints,
@@ -77,7 +77,7 @@ describe("preprocess", () => {
 
       {
         userName: "E",
-        eventJobName: "소서리스",
+        bonusBenefitDescription: "소서리스",
         targetScore: 15,
         calculateBasePointsByRecords,
         calculateBonusPointsByRecords: calculateNonMainFieldStudyBonusPoints,
@@ -86,7 +86,7 @@ describe("preprocess", () => {
       },
       {
         userName: "F",
-        eventJobName: "네크로멘서",
+        bonusBenefitDescription: "네크로멘서",
         targetScore: 15,
         calculateBasePointsByRecords,
         calculateBonusPointsByRecords: calculateConferenceJoinedBonusPoints,
@@ -205,7 +205,7 @@ describe("preprocess", () => {
       {
         basePoint: 3,
         bonusPoint: 2,
-        eventJobName: "바바리안",
+        bonusBenefitDescription: "바바리안",
         scoreNeeded: 10,
         targetScore: 15,
         totalScore: 5,
@@ -216,7 +216,7 @@ describe("preprocess", () => {
       {
         basePoint: 3,
         bonusPoint: 2,
-        eventJobName: "어쎄신",
+        bonusBenefitDescription: "어쎄신",
         scoreNeeded: 10,
         targetScore: 15,
         totalScore: 5,
@@ -227,7 +227,7 @@ describe("preprocess", () => {
       {
         basePoint: 3,
         bonusPoint: 2,
-        eventJobName: "드루이드",
+        bonusBenefitDescription: "드루이드",
         scoreNeeded: 10,
         targetScore: 15,
         totalScore: 5,
@@ -239,7 +239,7 @@ describe("preprocess", () => {
       {
         basePoint: 3,
         bonusPoint: 2,
-        eventJobName: "소서리스",
+        bonusBenefitDescription: "소서리스",
         scoreNeeded: 10,
         targetScore: 15,
         totalScore: 5,
@@ -250,7 +250,7 @@ describe("preprocess", () => {
       {
         basePoint: 3,
         bonusPoint: 2,
-        eventJobName: "네크로멘서",
+        bonusBenefitDescription: "네크로멘서",
         scoreNeeded: 10,
         targetScore: 15,
         totalScore: 5,

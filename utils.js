@@ -103,7 +103,7 @@ const calculateTotalScoreIncludingConferenceJoinedBonus =
 
 const generateUserSpecReport = (info) => `
 이름: ${info.userName}
-헤택 : ${info.eventJobName}
+헤택 : ${info.bonusBenefitDescription}
 목표 점수: ${info.targetScore}
 총 획득 점수: ${info.totalScore} (인증: ${info.basePoint} + 보너스: ${
   info.bonusPoint

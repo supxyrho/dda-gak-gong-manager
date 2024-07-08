@@ -27,7 +27,7 @@ const preprocess = R.curry((allUsers, allStudyRecords) =>
           R.mergeAll([
             R.applySpec({
               userName: R.prop("userName"),
-              eventJobName: R.prop("eventJobName"),
+              bonusBenefitDescription: R.prop("bonusBenefitDescription"),
               targetScore: R.prop("targetScore"),
             })(user),
             R.applySpec({
@@ -78,7 +78,7 @@ const preprocess = R.curry((allUsers, allStudyRecords) =>
           R.map(
             R.applySpec({
               userName: R.prop('userName'), 
-              eventJobName: R.prop('eventJobName'),
+              bonusBenefitDescription: R.prop('bonusBenefitDescription'),
               targetScore: R.prop('targetScore'),
               totalScore: R.always(0),
               basePoint: R.always(0),

@@ -15,7 +15,7 @@ const {
 module.exports = [
   {
     userName: "최신영",
-    eventJobName: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
+    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
     targetScore: 10,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculateWeekendBonusPoints,
@@ -23,7 +23,7 @@ module.exports = [
   },
   {
     userName: "채문원",
-    eventJobName: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
+    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
     targetScore: 10,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculateWeekendBonusPoints,
@@ -31,7 +31,7 @@ module.exports = [
   },
   {
     userName: "박상민",
-    eventJobName: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
+    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
     targetScore: 10,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculateWeekendBonusPoints,
@@ -40,18 +40,18 @@ module.exports = [
 
   {
     userName: "김규태",
-    eventJobName:
+    bonusBenefitDescription:
       "(최대 2회까지) 개발 외 타 분야 학습 인증 시, 2회 인증 보너스 제공",
     targetScore: 10,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculateNonMainFieldStudyBonusPoints,
     calculateTotalScoreByRecords:
-    calculateTotalScoreIncludingNonMainFieldStudyBonus,
+      calculateTotalScoreIncludingNonMainFieldStudyBonus,
   },
 
   // {
   //   userName: "A",
-  //   eventJobName: "바바리안",
+  //   bonusBenefitDescription: "바바리안",
   //   targetScore: 15,
   //   calculateBasePointsByRecords,
   //   calculateBonusPointsByRecords: calculateWeekendBonusPoints,
@@ -59,7 +59,7 @@ module.exports = [
   // },
   // {
   //   userName: "B",
-  //   eventJobName: "어쎄신",
+  //   bonusBenefitDescription: "어쎄신",
   //   targetScore: 15,
   //   calculateBasePointsByRecords,
   //   calculateBonusPointsByRecords: calculate1AMTo2AMBonusPoints,
@@ -68,7 +68,7 @@ module.exports = [
 
   // {
   //   userName: "C",
-  //   eventJobName: "드루이드",
+  //   bonusBenefitDescription: "드루이드",
   //   targetScore: 15,
   //   calculateBasePointsByRecords,
   //   calculateBonusPointsByRecords:calculateGroupStudyBonusPoints,
@@ -79,7 +79,7 @@ module.exports = [
 
   // {
   //   userName: "E",
-  //   eventJobName: "소서리스",
+  //   bonusBenefitDescription: "소서리스",
   //   targetScore: 15,
   //   calculateBasePointsByRecords,
   //   calculateBonusPointsByRecords:calculateNonMainFieldStudyBonusPoints,
@@ -87,7 +87,7 @@ module.exports = [
   // },
   // {
   //   userName: "E",
-  //   eventJobName: "소서리스",
+  //   bonusBenefitDescription: "소서리스",
   //   targetScore: 15,
   //   calculateBasePointsByRecords,
   //   calculateBonusPointsByRecords: calculateConferenceJoinedBonusPoints,
