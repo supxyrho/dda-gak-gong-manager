@@ -93,6 +93,7 @@ const preprocess = R.curry((allUsers, allStudyRecords) =>
     ),
     // @brief : JSON에 기입 시, 잘못 기입한 값이 있을 수 있으므로, undefined 값이 있는 객체가 있는지 확인 후, 에러를 발생시키도록 처리
     // @TODO: 추후 에러가 발생한 객체만 별도 모나드 처리 후 별도 처리하고, 에러가 발생하지 않은 객체는 정상 출력하도록 처리
+    // @TODO: 파이프 최상단에서 우선적으로 Validation을 수행하도록 처리
     R.tap(
       R.forEach(
         R.pipe(
