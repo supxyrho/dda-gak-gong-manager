@@ -20,10 +20,8 @@ describe("preprocess", () => {
   beforeEach(() => {
     jest.resetModules();
     const fixedDate = '2024-07-05';
-    jest.mock('dayjs', () => {
-      const actualDayjs = jest.requireActual('dayjs');
-      return jest.fn(() => actualDayjs(fixedDate));
-    });
+    // @ref: https://jestjs.io/docs/timer-mocks
+    jest.useFakeTimers().setSystemTime(new Date(fixedDate))
   });
 
   afterEach(() => {
@@ -61,6 +59,7 @@ describe("preprocess", () => {
   });
 
   test("전체 시나리오", () => {
+    
     const allUsers = [
       {
         userName: "A",
