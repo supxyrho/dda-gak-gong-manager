@@ -30,7 +30,7 @@ describe("preprocess", () => {
     jest.dontMock('dayjs');
   });
 
-  test("빈 배열인 경우, 빈 배열을 반환한다.", () => {
+  test("사용자의 인증 기록이 없는 경우에도 정상적으로 결과로 출력한다.", () => {
     const allUsers = [
       {
         userName: "A",
@@ -41,8 +41,23 @@ describe("preprocess", () => {
         calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
       },
     ];
-    const expected = preprocess(allUsers, []);
-    expect(expected).toEqual([]);
+
+    const allStudyRecords = [];
+    const expected = preprocess(allUsers, allStudyRecords);
+    expect(expected).toEqual([
+      {
+        "userName": "A",
+        "bonusBenefitDescription": "바바리안",
+        "totalScore": 0,
+        "basePoint": 0,
+        "bonusPoint": 0,
+        "scoreNeeded": 15,
+        "targetScore": 15,
+        "daySinceLastStudy": null,
+        "lastStudyTime": null,
+      }
+
+    ]);
   });
 
   test("전체 시나리오", () => {
