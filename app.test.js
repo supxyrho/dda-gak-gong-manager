@@ -28,7 +28,7 @@ describe("preprocess", () => {
     jest.dontMock('dayjs');
   });
 
-  test("사용자의 인증 기록이 없는 경우에도 정상적으로 결과로 출력한다.", () => {
+  test("(임시) 사용자의 인증 기록이 없는 경우에도 정상적으로 결과로 출력한다.", () => {
     const allUsers = [
       {
         userName: "A",
@@ -42,24 +42,49 @@ describe("preprocess", () => {
 
     const allStudyRecords = [];
     const expected = preprocess(allUsers, allStudyRecords);
-    expect(expected).toEqual([
-      {
-        "userName": "A",
-        "bonusBenefitDescription": "바바리안",
-        "totalScore": 0,
-        "basePoint": 0,
-        "bonusPoint": 0,
-        "scoreNeeded": 15,
-        "targetScore": 15,
-        "daySinceLastStudy": null,
-        "lastStudyTime": null,
-      }
-
-    ]);
+    expect(expected).toEqual(
+      [
+        {
+          userName: "A",
+          bonusBenefitDescription: "바바리안",
+          totalScore: 0,
+          basePoint: 0,
+          bonusPoint: 0,
+          scoreNeeded: 15,
+          targetScore: 15,
+          daySinceLastStudy: null,
+          lastStudyTime: null,
+        }
+      ]
+    );
   });
 
+  // @TODO: 추후 테스트 케이스를 보다 세분화하여 작성한다.
+  test('특정 props가 없는 경우, Error를 Throw한다.', ()=> {
+    const allUsers = [
+      {
+        userName: "A",
+        bonusBenefitDescription: "바바리안",
+        targetScore: 15,
+        calculateBasePointsByRecords,
+        calculateBonusPointsByRecords: calculateWeekendBonusPoints,
+        calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
+      },
+    ];
+
+    const allStudyRecords = [
+      {
+        // @brief: dateStr을 누락해서 기입한 경우
+        // dateStr: "2024-06-30 06:00",
+        userName: "A",
+        type: "개인공부",
+      }
+    ];
+
+    expect(() => preprocess(allUsers, allStudyRecords)).toThrowError();
+  })
+
   test("전체 시나리오", () => {
-    
     const allUsers = [
       {
         userName: "A",
