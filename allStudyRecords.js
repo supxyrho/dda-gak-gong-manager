@@ -39,6 +39,21 @@ module.exports = [
     userName: "김규태",
     type: "개발공부",
   },
+  {
+    dateStr: "2024-07-06 20:06",
+    userName: "김규태",
+    type: "컨퍼런스참여",
+  },
+  {
+    dateStr: "2024-07-09 13:14",
+    userName: "채문원",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-10 19:40",
+    userName: "최신영",
+    type: "개인공부",
+  },
 
   // {
   //   dateStr: "2024-10-27 10:27",
