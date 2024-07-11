@@ -23,7 +23,7 @@ const preprocess = R.curry((allUsers, allStudyRecords) =>
     R.map(sortByAscDate),
     R.map(
       R.converge(
-        (originalRecords, transformedRecords,  user) =>
+        (originalRecords, transformedRecords, user) =>
           R.mergeAll([
             R.applySpec({
               userName: R.prop("userName"),
@@ -59,46 +59,52 @@ const preprocess = R.curry((allUsers, allStudyRecords) =>
               daySinceLastStudy,
             })(originalRecords),
           ]),
-          [
-            R.identity,
-            R.pipe(
-              mapNested(R.when(R.pipe(R.prop("dateStr"), isFrom1AMTill2AM), adjustToPrevDayEnd)),
-              uniqueByDay
+        [
+          R.identity,
+          R.pipe(
+            R.map(
+              R.when(
+                R.pipe(R.prop("dateStr"), isFrom1AMTill2AM),
+                adjustToPrevDayEnd
+              )
             ),
-            R.pipe(R.head, R.prop("userName"), R.flip(findUserByName)(allUsers)),
-          ]
+            uniqueByDay
+          ),
+          R.pipe(R.head, R.prop("userName"), R.flip(findUserByName)(allUsers)),
+        ]
       )
     ),
-    R.converge(
-      R.concat,
-      [
-        R.identity,
-        R.pipe(
-          R.differenceWith(R.eqProps('userName'), allUsers),
-          R.map(
-            R.applySpec({
-              userName: R.prop('userName'), 
-              bonusBenefitDescription: R.prop('bonusBenefitDescription'),
-              targetScore: R.prop('targetScore'),
-              totalScore: R.always(0),
-              basePoint: R.always(0),
-              bonusPoint: R.always(0),
-              scoreNeeded: R.prop('targetScore'),
-              lastStudyTime: R.always(null),
-              daySinceLastStudy: R.always(null),
-            })
-          )
+    R.converge(R.concat, [
+      R.identity,
+      R.pipe(
+        R.differenceWith(R.eqProps("userName"), allUsers),
+        R.map(
+          R.applySpec({
+            userName: R.prop("userName"),
+            bonusBenefitDescription: R.prop("bonusBenefitDescription"),
+            targetScore: R.prop("targetScore"),
+            totalScore: R.always(0),
+            basePoint: R.always(0),
+            bonusPoint: R.always(0),
+            scoreNeeded: R.prop("targetScore"),
+            lastStudyTime: R.always(null),
+            daySinceLastStudy: R.always(null),
+          })
         )
-      ]
-    ),
+      ),
+    ]),
     // @brief : JSON에 기입 시, 잘못 기입한 값이 있을 수 있으므로, undefined 값이 있는 객체가 있는지 확인 후, 에러를 발생시키도록 처리
     // @TODO: 추후 에러가 발생한 객체만 별도 모나드 처리 후 별도 처리하고, 에러가 발생하지 않은 객체는 정상 출력하도록 처리
     // @TODO: 파이프 최상단에서 우선적으로 Validation을 수행하도록 처리
     R.tap(
       R.forEach(
         R.pipe(
-          R.values, 
-          R.forEach(R.when(R.equals(undefined), ()=> { throw new Error('undefined value detected in object')}))
+          R.values,
+          R.forEach(
+            R.when(R.equals(undefined), () => {
+              throw new Error("undefined value detected in object");
+            })
+          )
         )
       )
     ),
