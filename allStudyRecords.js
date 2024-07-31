@@ -54,6 +54,131 @@ module.exports = [
     userName: "최신영",
     type: "개인공부",
   },
+  {
+    dateStr: "2024-07-11 21:40",
+    userName: "채문원",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-12 12:00",
+    userName: "최신영",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-13 12:53",
+    userName: "김규태",
+    type: "컨퍼런스참여",
+  },
+  {
+    dateStr: "2024-07-15 11:50",
+    userName: "채문원",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-15 20:13",
+    userName: "최신영",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-16 12:58",
+    userName: "채문원",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-16 20:56",
+    userName: "최신영",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-18 20:45",
+    userName: "김규태",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-19 1:30",
+    userName: "박상민",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-19 10:54",
+    userName: "채문원",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-19 10:54",
+    userName: "박상민",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-20 1:58",
+    userName: "박상민",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-20 19:23",
+    userName: "김규태",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-20 19:54",
+    userName: "박상민",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-22 01:46",
+    userName: "박상민",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-24 23:48",
+    userName: "박상민",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-24 23:48",
+    userName: "김규태",
+    type: "다른분야공부",
+  },
+  {
+    dateStr: "2024-07-27 00:17",
+    userName: "박상민",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-27 20:33",
+    userName: "박상민",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-28 23:21",
+    userName: "박상민",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-29 10:31",
+    userName: "채문원",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-29 13:56",
+    userName: "최신영",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-30 19:46",
+    userName: "채문원",
+    type: "개인공부",
+  },
+  {
+    dateStr: "2024-07-30 23:14",
+    userName: "김규태",
+    type: "다른분야공부",
+  },
+  {
+    dateStr: "2024-07-31 19:24",
+    userName: "최신영",
+    type: "다른분야공부",
+  },
 
   // {
   //   dateStr: "2024-10-27 10:27",
