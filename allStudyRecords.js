@@ -241,6 +241,145 @@ module.exports = [
     type: "개발공부",
   },
 
+  {
+    dateStr: "2024-09-14 08:37",
+    userName: "강범수",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-14 15:16",
+    userName: "박진현",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-14 22:54",
+    userName: "박지수",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-14 15:46",
+    userName: "채문원",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-14 23:48",
+    userName: "박상민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-16 23:09",
+    userName: "강범수",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-18 03:46",
+    userName: "강범수",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-18 11:48",
+    userName: "채문원",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-18 19:15",
+    userName: "이상현",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-19 21:55",
+    userName: "김규태",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-20 17:11",
+    userName: "박진현",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-20 22:14",
+    userName: "이혜영",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-21 01:55",
+    userName: "박상민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-21 10:13",
+    userName: "채문원",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-21 22:18",
+    userName: "이혜영",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-22 01:54",
+    userName: "박상민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-22 19:25",
+    userName: "이혜영",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-22 22:26",
+    userName: "박찬호",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-22 21:18",
+    userName: "이혜영",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-23 21:25",
+    userName: "박지수",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-23 22:02",
+    userName: "박상민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-23 22:16",
+    userName: "이상현",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-23 23:51",
+    userName: "박찬호",
+    type: "개발공부",
+  },
+
+
   // {
   //   dateStr: "2024-10-27 10:27",
   //   userName: "A"진

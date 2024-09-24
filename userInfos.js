@@ -95,7 +95,7 @@ module.exports = [
   {
     userName: "박상민",
     bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
-    targetScore: 10,
+    targetScore: 15,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords: calculateWeekendBonusPoints,
     calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
