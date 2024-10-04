@@ -475,7 +475,107 @@ module.exports = [
     type: "개발공부",
   },
 
+  {
+    dateStr: "2024-09-27 12:35",
+    userName: "채문원",
+    type: "개발공부",
+  },
 
+  {
+    dateStr: "2024-09-27 14:29",
+    userName: "박진현",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-27 23:51",
+    userName: "박우람",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-28 10:15",
+    userName: "채문원",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-28 20:11",
+    userName: "이정훈",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-28 20:45",
+    userName: "김규태",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-28 23:07",
+    userName: "박상민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-28 23:10",
+    userName: "박우람",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-28 23:29",
+    userName: "박지수",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-29 09:30",
+    userName: "김규태",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-29 12:19",
+    userName: "박찬호",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-29 18:18",
+    userName: "이정훈",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-29 20:02",
+    userName: "박상민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-30 12:01",
+    userName: "박지수",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-30 12:20",
+    userName: "이혜영",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-30 13:07",
+    userName: "채문원",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-09-30 12:03",
+    userName: "박찬호",
+    type: "개발공부",
+  },
 
   // {
   //   dateStr: "2024-10-27 10:27",
