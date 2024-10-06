@@ -50,6 +50,8 @@ const findUserByName = R.curry((userName, users) =>
 
 // Layer 4
 const filterByWeekend = R.filter(R.pipe(R.prop("dateStr"), isWeekend));
+const fitlerByNotKeenkend = R.reject(R.pipe(R.prop("dateStr"), isWeekend));
+
 const filterBy1AMTill2AM = R.filter(
   R.pipe(R.prop("dateStr"), isFrom1AMTill2AM)
 );
@@ -60,46 +62,31 @@ const filterByConferenceJoined = R.filter(R.propEq("컨퍼런스참여", "type")
 // Layer 5 (기획 요구사항 레벨)
 const calculateWeekendBonusPoints = calculateBonusPointsWith(filterByWeekend);
 
-const calculateTotalScoreIncludingWeekendBonus = calculateTotalScoreWith(
-  calculateBasePointsByRecords,
-  calculateWeekendBonusPoints
-);
-
-const calculate1AMTo2AMBonusPoints =
-  calculateBonusPointsWith(filterBy1AMTill2AM);
-
-const calculateTotalScoreIncluding1AMTo2AMBonus = calculateTotalScoreWith(
-  calculateBasePointsByRecords,
-  calculate1AMTo2AMBonusPoints
-);
-
 const calculateGroupStudyBonusPoints =
   calculateBonusPointsWith(filterByGroupStudy);
-
-const calculateTotalScoreIncludingGroupStudyBonus = calculateTotalScoreWith(
-  calculateBasePointsByRecords,
-  calculateGroupStudyBonusPoints
-);
 
 const calculateNonMainFieldStudyBonusPoints = calculateBonusPointsWith(
   filterByNonMainFieldStudy
 );
 
-const calculateTotalScoreIncludingNonMainFieldStudyBonus =
-  calculateTotalScoreWith(
-    calculateBasePointsByRecords,
-    calculateNonMainFieldStudyBonusPoints
-  );
-
 const calculateConferenceJoinedBonusPoints = calculateBonusPointsWith(
   filterByConferenceJoined
 );
 
-const calculateTotalScoreIncludingConferenceJoinedBonus =
-  calculateTotalScoreWith(
-    calculateBasePointsByRecords,
-    calculateConferenceJoinedBonusPoints
-  );
+const calculateBonusPointsByRecords = R.pipe(
+  R.converge(R.unapply(R.sum), [
+    calculateWeekendBonusPoints,
+    R.pipe(fitlerByNotKeenkend, calculateNonMainFieldStudyBonusPoints),
+    R.pipe(fitlerByNotKeenkend, calculateConferenceJoinedBonusPoints),
+    R.pipe(R.complement(fitlerByNotKeenkend), calculateGroupStudyBonusPoints),
+  ]),
+  R.clamp(0, 2)
+);
+
+const calculateTotalScoreByRecords = calculateTotalScoreWith(
+  calculateBasePointsByRecords,
+  calculateBonusPointsByRecords
+);
 
 const generateUserSpecReport = (info) => `
 이름: ${info.userName}
@@ -109,8 +96,12 @@ const generateUserSpecReport = (info) => `
   info.bonusPoint
 })
 남은 점수: ${info.scoreNeeded}
-마지막 스터디 시간: ${info.lastStudyTime ?? '없음'} ${
-  !info.daySinceLastStudy ? '' : info.daySinceLastStudy === 0 ? "(당일)" : `(${info.daySinceLastStudy}일 전 인증)`
+마지막 스터디 시간: ${info.lastStudyTime ?? "없음"} ${
+  !info.daySinceLastStudy
+    ? ""
+    : info.daySinceLastStudy === 0
+    ? "(당일)"
+    : `(${info.daySinceLastStudy}일 전 인증)`
 }
 `;
 
@@ -134,15 +125,11 @@ module.exports = {
   filterByNonMainFieldStudy,
   filterByConferenceJoined,
   calculateWeekendBonusPoints,
-  calculateTotalScoreIncludingWeekendBonus,
-  calculate1AMTo2AMBonusPoints,
-  calculateTotalScoreIncluding1AMTo2AMBonus,
   calculateGroupStudyBonusPoints,
-  calculateTotalScoreIncludingGroupStudyBonus,
   calculateNonMainFieldStudyBonusPoints,
-  calculateTotalScoreIncludingNonMainFieldStudyBonus,
   calculateConferenceJoinedBonusPoints,
-  calculateTotalScoreIncludingConferenceJoinedBonus,
+  calculateBonusPointsByRecords,
+  calculateTotalScoreByRecords,
   formatToDateOnly,
   generateUserSpecReport,
 };
