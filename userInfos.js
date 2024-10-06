@@ -1,157 +1,65 @@
 const {
   calculateBasePointsByRecords,
-  calculateWeekendBonusPoints,
-  calculateTotalScoreIncludingWeekendBonus,
-  calculate1AMTo2AMBonusPoints,
-  calculateTotalScoreIncluding1AMTo2AMBonus,
-  calculateGroupStudyBonusPoints,
-  calculateTotalScoreIncludingGroupStudyBonus,
-  calculateNonMainFieldStudyBonusPoints,
-  calculateTotalScoreIncludingNonMainFieldStudyBonus,
-  calculateConferenceJoinedBonusPoints,
-  calculateTotalScoreIncludingConferenceJoinedBonus,
+  calculateBonusPointsByRecords,
+  calculateTotalScoreByRecords,
 } = require("./utils");
 
 module.exports = [
   {
     userName: "김규태",
-    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
+    bonusBenefitDescription:
+      "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 학습",
     targetScore: 10,
     calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
+    calculateBonusPointsByRecords,
+    calculateTotalScoreByRecords,
   },
-  {
-    userName: "박찬호",
-    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
-    targetScore: 10,
-    calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
-  },
-  {
-    userName: "강범수",
-    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
-    targetScore: 10,
-    calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
-  },
-
   {
     userName: "채문원",
-    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
+    bonusBenefitDescription:
+      "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 학습",
     targetScore: 10,
     calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
+    calculateBonusPointsByRecords,
+    calculateTotalScoreByRecords,
   },
-
   {
-    userName: "박진현",
-    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
+    userName: "최신영",
+    bonusBenefitDescription:
+      "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 학습",
     targetScore: 10,
     calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
-  },
-
-  {
-    userName: "이정훈",
-    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
-    targetScore: 10,
-    calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
-  },
-
-  {
-    userName: "이상현",
-    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
-    targetScore: 10,
-    calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
-  },
-
-  {
-    userName: "이혜영",
-    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
-    targetScore: 10,
-    calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
-  },
-
-  {
-    userName: "박지수",
-    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
-    targetScore: 10,
-    calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
+    calculateBonusPointsByRecords,
+    calculateTotalScoreByRecords,
   },
 
   {
     userName: "박상민",
-    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
+    bonusBenefitDescription:
+      "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 학습",
     targetScore: 15,
     calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
+    calculateBonusPointsByRecords,
+    calculateTotalScoreByRecords,
   },
 
   {
-    userName: "박우람",
-    bonusBenefitDescription: "(최대 2회까지) 주말 인증 시, 2회 인증 인정",
+    userName: "조은성",
+    bonusBenefitDescription:
+      "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 학습",
     targetScore: 10,
     calculateBasePointsByRecords,
-    calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-    calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus,
+    calculateBonusPointsByRecords,
+    calculateTotalScoreByRecords,
   },
 
-  // {
-  //   userName: "A",
-  //   bonusBenefitDescription: "바바리안",
-  //   targetScore: 15,
-  //   calculateBasePointsByRecords,
-  //   calculateBonusPointsByRecords: calculateWeekendBonusPoints,
-  //   calculateTotalScoreByRecords: calculateTotalScoreIncludingWeekendBonus
-  // },
-  // {
-  //   userName: "B",
-  //   bonusBenefitDescription: "어쎄신",
-  //   targetScore: 15,
-  //   calculateBasePointsByRecords,
-  //   calculateBonusPointsByRecords: calculate1AMTo2AMBonusPoints,
-  //   calculateTotalScoreByRecords:calculateTotalScoreIncluding1AMTo2AMBonus
-  // },
-
-  // {
-  //   userName: "C",
-  //   bonusBenefitDescription: "드루이드",
-  //   targetScore: 15,
-  //   calculateBasePointsByRecords,
-  //   calculateBonusPointsByRecords:calculateGroupStudyBonusPoints,
-  //   calculateTotalScoreByRecords:calculateTotalScoreIncludingGroupStudyBonus
-  // },
-
-  // // 아마존 생략
-
-  // {
-  //   userName: "E",
-  //   bonusBenefitDescription: "소서리스",
-  //   targetScore: 15,
-  //   calculateBasePointsByRecords,
-  //   calculateBonusPointsByRecords:calculateNonMainFieldStudyBonusPoints,
-  //   calculateTotalScoreByRecords: calculateTotalScoreIncludingNonMainFieldStudyBonus
-  // },
-  // {
-  //   userName: "E",
-  //   bonusBenefitDescription: "소서리스",
-  //   targetScore: 15,
-  //   calculateBasePointsByRecords,
-  //   calculateBonusPointsByRecords: calculateConferenceJoinedBonusPoints,
-  //   calculateTotalScoreByRecords: calculateTotalScoreIncludingConferenceJoinedBonus
-  // },
+  {
+    userName: "애용",
+    bonusBenefitDescription:
+      "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 공부",
+    targetScore: 10,
+    calculateBasePointsByRecords,
+    calculateBonusPointsByRecords,
+    calculateTotalScoreByRecords,
+  },
 ];
