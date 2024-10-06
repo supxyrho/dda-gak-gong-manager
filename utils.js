@@ -78,7 +78,7 @@ const calculateBonusPointsByRecords = R.pipe(
     calculateWeekendBonusPoints,
     R.pipe(fitlerByNotKeenkend, calculateNonMainFieldStudyBonusPoints),
     R.pipe(fitlerByNotKeenkend, calculateConferenceJoinedBonusPoints),
-    R.pipe(R.complement(fitlerByNotKeenkend), calculateGroupStudyBonusPoints),
+    R.pipe(fitlerByNotKeenkend, calculateGroupStudyBonusPoints),
   ]),
   R.clamp(0, 2)
 );
