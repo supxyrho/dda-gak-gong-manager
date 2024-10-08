@@ -52,4 +52,10 @@ module.exports = [
     userName: "최신영",
     type: "개발공부",
   },
+
+  {
+    dateStr: "2024-10-06 19:55",
+    userName: "김규태",
+    type: "개발공부",
+  },
 ];
