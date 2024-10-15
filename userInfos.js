@@ -62,4 +62,14 @@ module.exports = [
     calculateBonusPointsByRecords,
     calculateTotalScoreByRecords,
   },
+
+  {
+    userName: "이한나",
+    bonusBenefitDescription:
+      "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 공부",
+    targetScore: 10,
+    calculateBasePointsByRecords,
+    calculateBonusPointsByRecords,
+    calculateTotalScoreByRecords,
+  },
 ];
