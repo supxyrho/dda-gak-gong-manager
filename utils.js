@@ -1,5 +1,7 @@
 const R = require("ramda");
 const dayjs = require("dayjs");
+const isBetween = require("dayjs/plugin/isBetween");
+dayjs.extend(isBetween);
 
 // functional helper
 const mapNested = (fn) => R.map(R.map(fn));
@@ -37,6 +39,14 @@ const isFrom1AMTill2AM = R.converge(R.or, [
   R.pipe(parseHour, isBetween0hAnd1h),
   R.both(R.pipe(parseHour, R.equals(2)), R.pipe(parseMinute, is0Minute)),
 ]);
+const isMiracleMorning = (dateStr) => {
+  const time = dayjs(dateStr);
+
+  const start = dayjs(dateStr).hour(4).minute(0).second(0);
+  const end = dayjs(dateStr).hour(8).minute(0).second(0);
+
+  return time.isBetween(start, end, null, "[]");
+};
 
 // Layer 3
 const calculateBasePointsByRecords = R.length;
@@ -58,6 +68,9 @@ const filterBy1AMTill2AM = R.filter(
 const filterByGroupStudy = R.filter(R.propEq("같이공부", "type"));
 const filterByNonMainFieldStudy = R.filter(R.propEq("다른분야공부", "type"));
 const filterByConferenceJoined = R.filter(R.propEq("컨퍼런스참여", "type"));
+const filterByMiracleMorning = R.filter(
+  R.pipe(R.prop("dateStr"), isMiracleMorning)
+);
 
 // Layer 5 (기획 요구사항 레벨)
 const calculateWeekendBonusPoints = calculateBonusPointsWith(filterByWeekend);
@@ -73,12 +86,17 @@ const calculateConferenceJoinedBonusPoints = calculateBonusPointsWith(
   filterByConferenceJoined
 );
 
+const calculateMiracleMorningBonusPoints = calculateBonusPointsWith(
+  filterByMiracleMorning
+);
+
 const calculateBonusPointsByRecords = R.pipe(
   R.converge(R.unapply(R.sum), [
     calculateWeekendBonusPoints,
     R.pipe(fitlerByNotKeenkend, calculateNonMainFieldStudyBonusPoints),
     R.pipe(fitlerByNotKeenkend, calculateConferenceJoinedBonusPoints),
     R.pipe(fitlerByNotKeenkend, calculateGroupStudyBonusPoints),
+    R.pipe(fitlerByNotKeenkend, calculateMiracleMorningBonusPoints),
   ]),
   R.clamp(0, 2)
 );
