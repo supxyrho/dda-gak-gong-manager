@@ -60,7 +60,7 @@ const findUserByName = R.curry((userName, users) =>
 
 // Layer 4
 const filterByWeekend = R.filter(R.pipe(R.prop("dateStr"), isWeekend));
-const fitlerByNotKeenkend = R.reject(R.pipe(R.prop("dateStr"), isWeekend));
+const fitlerByNotWeenkend = R.reject(R.pipe(R.prop("dateStr"), isWeekend));
 
 const filterBy1AMTill2AM = R.filter(
   R.pipe(R.prop("dateStr"), isFrom1AMTill2AM)
@@ -93,10 +93,10 @@ const calculateMiracleMorningBonusPoints = calculateBonusPointsWith(
 const calculateBonusPointsByRecords = R.pipe(
   R.converge(R.unapply(R.sum), [
     calculateWeekendBonusPoints,
-    R.pipe(fitlerByNotKeenkend, calculateNonMainFieldStudyBonusPoints),
-    R.pipe(fitlerByNotKeenkend, calculateConferenceJoinedBonusPoints),
-    R.pipe(fitlerByNotKeenkend, calculateGroupStudyBonusPoints),
-    R.pipe(fitlerByNotKeenkend, calculateMiracleMorningBonusPoints),
+    R.pipe(fitlerByNotWeenkend, calculateNonMainFieldStudyBonusPoints),
+    R.pipe(fitlerByNotWeenkend, calculateConferenceJoinedBonusPoints),
+    R.pipe(fitlerByNotWeenkend, calculateGroupStudyBonusPoints),
+    R.pipe(fitlerByNotWeenkend, calculateMiracleMorningBonusPoints),
   ]),
   R.clamp(0, 2)
 );
