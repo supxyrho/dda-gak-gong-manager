@@ -250,4 +250,76 @@ module.exports = [
     userName: "김규태",
     type: "개발공부",
   },
+
+  {
+    dateStr: "2024-10-21 22:54",
+    userName: "이한나",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-10-21 21:43",
+    userName: "박상민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-10-21 23:55",
+    userName: "조은성",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-10-22 20:18",
+    userName: "최신영",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-10-23 15:59",
+    userName: "조은성",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-10-23 22:49",
+    userName: "박상민",
+    type: "개발공부",
+  },
+  
+  {
+    dateStr: "2024-10-24 21:41",
+    userName: "박상민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-10-24 17:40",
+    userName: "조은성",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-10-25 22:31",
+    userName: "박상민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-10-26 11:44",
+    userName: "최신영",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-10-26 17:42",
+    userName: "이한나",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-10-26 22:12",
+    userName: "박상민",
+    type: "개발공부",
+  },
 ];
