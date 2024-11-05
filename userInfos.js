@@ -6,35 +6,26 @@ const {
 
 module.exports = [
   {
-    userName: "김규태",
-    bonusBenefitDescription:
-      "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 학습, 미라클 모닝(오전4~오전8시)",
-    targetScore: 10,
-    calculateBasePointsByRecords,
-    calculateBonusPointsByRecords,
-    calculateTotalScoreByRecords,
-  },
-  {
     userName: "채문원",
     bonusBenefitDescription:
       "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 학습, 미라클 모닝(오전4~오전8시)",
-    targetScore: 10,
+    targetScore: 12,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords,
     calculateTotalScoreByRecords,
   },
   {
-    userName: "최신영",
+    userName: "김규태",
     bonusBenefitDescription:
       "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 학습, 미라클 모닝(오전4~오전8시)",
-    targetScore: 10,
+    targetScore: 12,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords,
     calculateTotalScoreByRecords,
   },
 
   {
-    userName: "박상민",
+    userName: "고은민",
     bonusBenefitDescription:
       "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 학습, 미라클 모닝(오전4~오전8시)",
     targetScore: 15,
@@ -44,20 +35,40 @@ module.exports = [
   },
 
   {
-    userName: "조은성",
+    userName: "최신영",
     bonusBenefitDescription:
       "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 학습, 미라클 모닝(오전4~오전8시)",
-    targetScore: 10,
+    targetScore: 12,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords,
     calculateTotalScoreByRecords,
   },
 
   {
-    userName: "이수현",
+    userName: "김승희",
+    bonusBenefitDescription:
+      "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 학습, 미라클 모닝(오전4~오전8시)",
+    targetScore: 12,
+    calculateBasePointsByRecords,
+    calculateBonusPointsByRecords,
+    calculateTotalScoreByRecords,
+  },
+
+  {
+    userName: "박상민",
     bonusBenefitDescription:
       "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 공부",
-    targetScore: 10,
+    targetScore: 15,
+    calculateBasePointsByRecords,
+    calculateBonusPointsByRecords,
+    calculateTotalScoreByRecords,
+  },
+
+  {
+    userName: "박진현",
+    bonusBenefitDescription:
+      "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 공부",
+    targetScore: 15,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords,
     calculateTotalScoreByRecords,
@@ -67,7 +78,7 @@ module.exports = [
     userName: "이한나",
     bonusBenefitDescription:
       "(최대 2회까지) 1회당 2회 인증 => 주말 학습, 개발 외 타분야 학습, 컨퍼런스 참가, 함께 공부",
-    targetScore: 10,
+    targetScore: 12,
     calculateBasePointsByRecords,
     calculateBonusPointsByRecords,
     calculateTotalScoreByRecords,
