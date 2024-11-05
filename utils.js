@@ -92,6 +92,12 @@ const calculateMiracleMorningBonusPoints = calculateBonusPointsWith(
   filterByMiracleMorning
 );
 
+const calculateSideProjectBonusPoints =
+  calculateBonusPointsWith(filterBySideProject);
+
+const calcaluateOpenSourceBonusPoints =
+  calculateBonusPointsWith(filterByOpenSource);
+
 const calculateBonusPointsByRecords = R.pipe(
   R.converge(R.unapply(R.sum), [
     calculateWeekendBonusPoints,
@@ -99,8 +105,8 @@ const calculateBonusPointsByRecords = R.pipe(
     R.pipe(fitlerByNotWeenkend, calculateConferenceJoinedBonusPoints),
     R.pipe(fitlerByNotWeenkend, calculateGroupStudyBonusPoints),
     R.pipe(fitlerByNotWeenkend, calculateMiracleMorningBonusPoints),
-    R.pipe(fitlerByNotWeenkend, filterBySideProject),
-    R.pipe(fitlerByNotWeenkend, filterByOpenSource),
+    R.pipe(fitlerByNotWeenkend, calculateSideProjectBonusPoints),
+    R.pipe(fitlerByNotWeenkend, calcaluateOpenSourceBonusPoints),
   ]),
   R.clamp(0, 3)
 );
