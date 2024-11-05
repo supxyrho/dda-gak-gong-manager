@@ -98,7 +98,7 @@ const calculateBonusPointsByRecords = R.pipe(
     R.pipe(fitlerByNotWeenkend, calculateGroupStudyBonusPoints),
     R.pipe(fitlerByNotWeenkend, calculateMiracleMorningBonusPoints),
   ]),
-  R.clamp(0, 2)
+  R.clamp(0, 3)
 );
 
 const calculateTotalScoreByRecords = calculateTotalScoreWith(
