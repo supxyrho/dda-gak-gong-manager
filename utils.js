@@ -71,6 +71,8 @@ const filterByConferenceJoined = R.filter(R.propEq("컨퍼런스참여", "type")
 const filterByMiracleMorning = R.filter(
   R.pipe(R.prop("dateStr"), isMiracleMorning)
 );
+const filterBySideProject = R.filter(R.propEq("사이드프로젝트", "type"));
+const filterByOpenSource = R.filter(R.propEq("오픈소스", "type"));
 
 // Layer 5 (기획 요구사항 레벨)
 const calculateWeekendBonusPoints = calculateBonusPointsWith(filterByWeekend);
@@ -97,6 +99,8 @@ const calculateBonusPointsByRecords = R.pipe(
     R.pipe(fitlerByNotWeenkend, calculateConferenceJoinedBonusPoints),
     R.pipe(fitlerByNotWeenkend, calculateGroupStudyBonusPoints),
     R.pipe(fitlerByNotWeenkend, calculateMiracleMorningBonusPoints),
+    R.pipe(fitlerByNotWeenkend, filterBySideProject),
+    R.pipe(fitlerByNotWeenkend, filterByOpenSource),
   ]),
   R.clamp(0, 3)
 );
