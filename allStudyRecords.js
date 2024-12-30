@@ -1,419 +1,178 @@
 module.exports = [
   {
-    dateStr: "2024-11-01 13:19",
-    userName: "채문원",
-    type: "개발공부",
-  },
-  {
-    dateStr: "2024-11-02 11:04",
-    userName: "채문원",
-    type: "타분야학습",
-  },
-  {
-    dateStr: "2024-11-03 13:51",
-    userName: "채문원",
-    type: "개발공부",
-  },
-  {
-    dateStr: "2024-11-03 17:36",
-    userName: "고은민",
-    type: "사이드프로젝트",
-  },
-
-  {
-    dateStr: "2024-11-05 05:33",
-    userName: "최신영",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-05 21:58",
-    userName: "고은민",
-    type: "사이드프로젝트",
-  },
-
-  {
-    dateStr: "2024-11-05 21:59",
-    userName: "박진현",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-05 22:20",
-    userName: "김규태",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-06 11:22",
+    dateStr: "2024-12-03 11:33",
     userName: "채문원",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-07 13:17",
+    dateStr: "2024-12-04 13:24",
     userName: "박상민",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-07 13:24",
+    dateStr: "2024-12-05 13:29",
     userName: "채문원",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-07 21:46",
-    userName: "박진현",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-07 21:56",
+    dateStr: "2024-12-05 21:59",
     userName: "고은민",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-07 22:50",
-    userName: "김승희",
+    dateStr: "2024-12-06 17:54",
+    userName: "박민호",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-08 16:08",
-    userName: "박진현",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-08 17:10",
-    userName: "최신영",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-08 19:00",
-    userName: "김규태",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-08 23:30",
-    userName: "고은민",
-    type: "사이드프로젝트",
-  },
-
-  {
-    dateStr: "2024-11-09 12:36",
-    userName: "채문원",
-    type: "사이드프로젝트",
-  },
-
-  {
-    dateStr: "2024-11-09 22:38",
-    userName: "고은민",
-    type: "사이드프로젝트",
-  },
-
-  {
-    dateStr: "2024-11-10 01:59",
-    userName: "박상민",
-    type: "오픈소스",
-  },
-
-  {
-    dateStr: "2024-11-10 22:53",
-    userName: "박상민",
-    type: "오픈소스",
-  },
-
-  {
-    dateStr: "2024-11-10 16:28",
+    dateStr: "2024-12-06 22:07",
     userName: "이한나",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-10 16:46",
+    dateStr: "2024-12-06 22:55",
     userName: "채문원",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-10 22:53",
-    userName: "박상민",
+    dateStr: "2024-12-07 12:56",
+    userName: "채문원",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-10 23:45",
-    userName: "김승희",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-11 20:00",
-    userName: "김규태",
-    type: "같이공부",
-  },
-
-  {
-    dateStr: "2024-11-11 20:00",
-    userName: "김승희",
-    type: "같이공부",
-  },
-
-  {
-    dateStr: "2024-11-11 20:00",
+    dateStr: "2024-12-08 22:26",
     userName: "이한나",
-    type: "같이공부",
-  },
-
-  {
-    dateStr: "2024-11-11 20:00",
-    userName: "고은민",
-    type: "같이공부",
-  },
-
-  {
-    dateStr: "2024-11-12 15:49",
-    userName: "박진현",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-12 22:29",
-    userName: "최신영",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-12 22:48",
-    userName: "김승희",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-13 11:39",
+    dateStr: "2024-12-09 20:13",
     userName: "채문원",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-13 12:18",
-    userName: "최신영",
+    dateStr: "2024-12-09 21:41",
+    userName: "이한나",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-14 21:27",
+    dateStr: "2024-12-11 13:10",
+    userName: "박민호",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-12-11 22:29",
+    userName: "고은민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-12-11 11:46",
+    userName: "채문원",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-12-12 20:15",
+    userName: "박민호",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-12-12 23:52",
+    userName: "고은민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-12-13 14:05",
+    userName: "채문원",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-12-15 20:40",
+    userName: "채문원",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-12-15 23:05",
     userName: "박상민",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-14 13:04",
+    dateStr: "2024-12-16 13:06",
+    userName: "박상민",
+    type: "개발공부",
+  },
+
+  {
+    dateStr: "2024-12-17 13:47",
     userName: "채문원",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-14 16:13",
-    userName: "박진현",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-15 01:59",
-    userName: "김규태",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-15 18:30",
-    userName: "박진현",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-15 18:30",
-    userName: "고은민",
-    type: "사이드프로젝트",
-  },
-
-  {
-    dateStr: "2024-11-15 22:15",
+    dateStr: "2024-12-17 21:00",
     userName: "이한나",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-16 01:29",
-    userName: "김규태",
+    dateStr: "2024-12-18 17:08",
+    userName: "박민호",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-16 18:56",
-    userName: "박진현",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-16 21:55",
+    dateStr: "2024-12-19 21:41",
     userName: "이한나",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-16 22:18",
-    userName: "고은민",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-17 16:17",
-    userName: "김승희",
-    type: "함꼐공부",
-  },
-
-  {
-    dateStr: "2024-11-17 16:17",
-    userName: "고은민",
-    type: "함꼐공부",
-  },
-
-  {
-    dateStr: "2024-11-17 21:15",
+    dateStr: "2024-12-22 23:29",
     userName: "이한나",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-18 22:31",
-    userName: "고은민",
-    type: "사이드프로젝트"
-  },
-
-  {
-    dateStr: "2024-11-19 14:20",
+    dateStr: "2024-12-25 21:57",
     userName: "채문원",
     type: "타분야학습",
   },
 
   {
-    dateStr: "2024-11-19 21:36",
-    userName: "최신영",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-19 22:28",
-    userName: "이한나",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-20 14:38",
-    userName: "박진현",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-21 16:49",
-    userName: "박진현",
-    type: "사이드프로젝트",
-  },
-
-  {
-    dateStr: "2024-11-21 22:09",
+    dateStr: "2024-12-26 21:33",
     userName: "박상민",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-24 17:05",
-    userName: "최신영",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-24 20:33",
-    userName: "이한나",
-    type: "개발공부",
-  },
-  {
-    dateStr: "2024-11-26 17:20",
-    userName: "박진현",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-26 19:35",
+    dateStr: "2024-12-26 21:39",
     userName: "이한나",
     type: "개발공부",
   },
 
   {
-    dateStr: "2024-11-27 12:26",
-    userName: "김규태",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-27 19:49",
-    userName: "김승희",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-28 12:23",
-    userName: "김규태",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-28 23:21",
-    userName: "김규태",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-28 23:42",
-    userName: "고은민",
-    type: "사이드프로젝트",
-  },
-
-  {
-    dateStr: "2024-11-29 11:00",
-    userName: "박진현",
-    type: "사이드프로젝트",
-  },
-
-  {
-    dateStr: "2024-11-29 10:25",
-    userName: "김규태",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-30 12:04",
-    userName: "고은민",
-    type: "개발공부",
-  },
-
-  {
-    dateStr: "2024-11-30 18:56",
+    dateStr: "2024-12-29 22:17",
     userName: "이한나",
     type: "개발공부",
   },
 
-  {
-    dateStr: "2024-11-30 23:01",
-    userName: "김규태",
-    type: "개발공부",
-  },
 
 
 ];
